@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubic - Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="background-container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Cubic" class="logo">
+            </div>
+        </header>
+        
+        <main class="main-container">
+            <div class="content-section">
+                <nav class="navbar">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#media" class="nav-link">Media</a>
+                    <a href="#platforms" class="nav-link">Get the Game</a>
+                    <a href="#press" class="nav-link">Press Kit</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                
+                <section class="content-block" id="about">
+                    <p>Cubic is an innovative puzzle game that challenges your mind and reflexes. Navigate through intricate levels filled with cubic obstacles and mind-bending challenges.</p>
+                    <p>Master the art of spatial manipulation as you solve increasingly complex puzzles. Each level presents unique challenges that will test your creativity and problem-solving skills.</p>
+                </section>
+                
+                <section class="content-block" id="media">
+                    <h2>Trailer & Screenshots</h2>
+                    <div class="video-container">
+                        <iframe width="100%" height="400" src="https://www.youtube.com/embed/qguwsoHU7yg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="note">Replace the YouTube video ID in the iframe src with your actual game trailer.</p>
+                </section>
+
+                <section class="content-block" id="platforms">
+                    <h2>Get the Game</h2>
+                    <div class="platform-links">
+                        <a href="#" class="platform-btn steam">
+                            <span>🎮</span> Steam
+                        </a>
+                        <a href="#" class="platform-btn itch">
+                            <span>🕹️</span> itch.io
+                        </a>
+                        <a href="#" class="platform-btn epic">
+                            <span>🎯</span> Epic Games
+                        </a>
+                    </div>
+                    <p class="release-info">Coming Soon 2026 • Windows, Mac, Linux</p>
+                </section>
+                <!--
+                <section class="content-block" id="features">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li>100+ hand-crafted levels with increasing complexity</li>
+                        <li>Unique cube manipulation mechanics</li>
+                        <li>Minimalist art style with stunning visual effects</li>
+                        <li>Original soundtrack that adapts to your gameplay</li>
+                        <li>Speedrun mode with global leaderboards</li>
+                        <li>Level editor - create and share your own puzzles</li>
+                    </ul>
+                </section>-->
+
+                <section class="content-block" id="press">
+                    <h2>Press Kit & Media</h2>
+                    <p>Download our press kit for screenshots, logos, fact sheets, and more.</p>
+                    <div class="press-buttons">
+                        <a href="#" class="btn-primary">📦 Download Press Kit</a>
+                        <a href="#" class="btn-secondary">📧 Media Inquiries</a>
+                    </div>
+                </section>
+
+                <section class="content-block" id="contact">
+                    <h2>Get in Touch</h2>
+                    <p>For business inquiries, press, or just to say hi:</p>
+                    <p><strong>Email:</strong> <a href="mailto:hello@cubicgame.com">hello@cubicgame.com</a></p>
+                    <p><strong>Follow us:</strong></p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn">Twitter</a>
+                        <a href="#" class="social-btn">Discord</a>
+                        <a href="#" class="social-btn">YouTube</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
