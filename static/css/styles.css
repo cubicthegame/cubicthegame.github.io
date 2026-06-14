@@ -190,6 +190,13 @@ body {
     font-size: 1.5rem;
 }
 
+/* Icon inside platform buttons */
+.platform-btn .platform-icon {
+    height: 28px;
+    width: auto;
+    display: inline-block;
+}
+
 .release-info {
     text-align: center;
     font-style: italic;
