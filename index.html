@@ -34,7 +34,8 @@
         <link rel="stylesheet" href="static/css/styles.css">
         <link rel="icon" type="image/x-icon" href="favicon.svg">
 
-        <!-- Structured data (JSON-LD) -->
+        <link rel="image_src" href="https://www.cubicthegame.com/static/logo.png">
+        <!-- Structured data (JSON-LD): VideoGame with ImageObject -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -42,10 +43,30 @@
             "name": "Cubic",
             "url": "https://www.cubicthegame.com/",
             "description": "Cubic is a puzzle game that challenges spatial reasoning and reflexes across handcrafted levels.",
-            "image": "https://www.cubicthegame.com/static/logo.png",
+            "image": {
+                "@type": "ImageObject",
+                "contentUrl": "https://www.cubicthegame.com/static/logo.png",
+                "url": "https://www.cubicthegame.com/static/logo.png",
+                "width": 1200,
+                "height": 630,
+                "caption": "Cubic game logo"
+            },
             "operatingSystem": "Windows, Mac, Linux",
             "datePublished": "2026",
             "genre": "Puzzle"
+        }
+        </script>
+        <!-- Additional ImageObject for search engines -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "contentUrl": "https://www.cubicthegame.com/static/logo.png",
+            "url": "https://www.cubicthegame.com/static/logo.png",
+            "width": 1200,
+            "height": 630,
+            "name": "Cubic logo",
+            "caption": "Cubic game logo used on the homepage"
         }
         </script>
 </head>
@@ -54,7 +75,7 @@
         <header class="header">
             <div class="logo-container">
                 <a href="https://www.cubicthegame.com/" aria-label="Cubic homepage">
-                    <img src="static/logo.png" alt="Cubic game logo" class="logo">
+                    <img src="static/logo.png" alt="Cubic game logo" class="logo" loading="eager">
                 </a>
             </div>
         </header>
@@ -83,7 +104,7 @@
                     <p>DEMO now available on Steam</p>
                     <div class="platform-links">
                         <a href="https://store.steampowered.com/app/3037080/Cubic" class="platform-btn steam" target="_blank" rel="noopener noreferrer" aria-label="Cubic on Steam">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam logo" class="platform-icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam logo" class="platform-icon" width="32" height="32" loading="lazy">
                             <span>Steam</span>
                         </a>
                     </div>
