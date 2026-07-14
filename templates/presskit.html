@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow">Press Kit</span>
+  <h1>Cubic — Press Kit</h1>
+  <p>Everything you need to write about Cubic: key art, screenshots, and the facts. For anything else, reach us at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+</section>
+
+<section class="presskit-section">
+  <div class="presskit-facts">
+    <div class="fact"><span class="eyebrow">Developer</span><strong>{{ studio_name }}</strong></div>
+    <div class="fact"><span class="eyebrow">Platform</span><strong>Steam (Windows)</strong></div>
+    <div class="fact"><span class="eyebrow">Genre</span><strong>Isometric Puzzle Adventure</strong></div>
+    <div class="fact"><span class="eyebrow">Status</span><strong>Demo available now</strong></div>
+  </div>
+</section>
+
+<section class="presskit-section" id="key-art">
+  <h2>Key Art</h2>
+  <p>Seven pieces of key art. Each is available as vector SVG, raster PNG at 1x / 2x, or the original Adobe Illustrator source.</p>
+  <div class="keyart-list">
+    {% for art in keyart %}
+    <div class="keyart-row">
+      <div class="keyart-image cube-cut">
+        <img src="{{ art.png2x }}" alt="Cubic key art {{ art.index }}" loading="lazy" width="900" height="900">
+      </div>
+      <div class="keyart-downloads">
+        <span class="idx">Key Art / {{ '%02d'|format(art.index) }}</span>
+        <h4>Piece {{ art.index }}</h4>
+        <div class="dl-buttons">
+          <a href="{{ art.svg }}" download>SVG</a>
+          <a href="{{ art.png1x }}" download>PNG 1x</a>
+          <a href="{{ art.png2x }}" download>PNG 2x</a>
+          <a href="{{ art.ai }}" download>Illustrator (.ai)</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="presskit-section" id="screenshots">
+  <h2>Screenshots</h2>
+  <p>Right-click / long-press any image to save, or use the download link.</p>
+  <div class="press-shots-grid">
+    {% for shot in screenshots %}
+    <a href="{{ shot }}" download aria-label="Download screenshot {{ loop.index }}">
+      <img src="{{ shot }}" alt="Cubic screenshot {{ loop.index }}" loading="lazy" width="1280" height="720">
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+  <h1>{{ page_title }}</h1>
+  <p>Last updated {{ updated }}</p>
+</section>
+<div class="legal-content">
+  {{ body | safe }}
+</div>
+{% endblock %}

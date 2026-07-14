@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-hero">
+  <span class="eyebrow">Devlog</span>
+  <h1>News &amp; Updates</h1>
+  <p>Design notes, patch notes, art dumps, and the occasional turtle — everything we post about building Cubic.</p>
+</section>
+
+<div class="news-index-grid">
+  {% for post in posts %}
+  <article class="post-card">
+    <a href="{{ post.url }}" class="thumb">
+      <img src="{{ post.cover }}" alt="{{ post.title }}" loading="lazy" width="640" height="400">
+    </a>
+    <div class="body">
+      <time datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
+      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+      <p class="excerpt">{{ post.excerpt }}</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

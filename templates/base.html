@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% import "_icons.html" as icon %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ site_url }}{{ path }}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="{{ og_type|default('website') }}">
+<meta property="og:site_name" content="{{ site_name }}">
+<meta property="og:title" content="{{ og_title|default(title) }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ site_url }}{{ path }}">
+<meta property="og:image" content="{{ site_url }}{{ og_image|default('assets/images/screenshots/screenshot-1.jpg') }}">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+{% if og_video %}
+<meta property="og:video" content="{{ og_video }}">
+{% endif %}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title|default(title) }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ site_url }}{{ og_image|default('assets/images/screenshots/screenshot-1.jpg') }}">
+
+<!-- Favicons -->
+<link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/images/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="assets/images/favicon-180.png">
+<link rel="icon" href="assets/images/logo-mini.png" type="image/png">
+
+<!-- Alternate languages -->
+<link rel="alternate" hreflang="en" href="{{ site_url }}{{ path }}">
+<link rel="alternate" hreflang="da" href="{{ site_url }}{{ path }}">
+<link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ path }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+{% if schema %}
+<script type="application/ld+json">{{ schema | safe }}</script>
+{% endif %}
+{% block extra_head %}{% endblock %}
+</head>
+<body class="{{ body_class|default('') }}">
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="brand" href="" aria-label="{{ site_name }} home">
+        <img src="assets/images/twinturtle-logo.png" alt="{{ studio_name }} logo" width="34" height="34">
+      </a>
+      <a class="nav-link" href="news/" data-i18n="nav_news">News</a>
+      <a class="nav-link" href="presskit.html" data-i18n="nav_presskit">Press Kit</a>
+    </div>
+
+    <div class="nav-center">
+      <img src="assets/images/logo-grayscale.png" alt="{{ site_name }}" width="140" height="32">
+    </div>
+
+    <div class="nav-right">
+      <nav class="socials" aria-label="Social links">
+        <a href="{{ links.discord }}" target="_blank" rel="noopener" aria-label="Discord">{{ icon.discord() }}</a>
+        <a href="{{ links.youtube }}" target="_blank" rel="noopener" aria-label="YouTube">{{ icon.youtube() }}</a>
+        <a href="{{ links.twitter }}" target="_blank" rel="noopener" aria-label="Twitter / X">{{ icon.twitter() }}</a>
+        <a href="{{ links.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon.instagram() }}</a>
+      </nav>
+
+      <div class="lang-switch">
+        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+          {{ icon.globe() }}
+          <span class="lang-text lang-current">EN</span>
+        </button>
+        <div class="lang-menu" role="menu">
+          <button data-lang="en" aria-selected="true" role="menuitem">English</button>
+          <button data-lang="da" aria-selected="false" role="menuitem">Dansk</button>
+        </div>
+      </div>
+
+      <a class="wishlist-btn" href="{{ links.steam }}" target="_blank" rel="noopener">
+        <span class="wl-text" data-i18n="nav_wishlist">Wishlist now!</span>
+        {{ icon.steam() }}
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img class="tt-logo" src="assets/images/twinturtle-logo.png" alt="{{ studio_name }}">
+      <img class="cubic-logo" src="assets/images/logo-grayscale.png" alt="{{ site_name }}">
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4 data-i18n="footer_contact">Contact</h4>
+        <a href="{{ links.steam }}" target="_blank" rel="noopener" data-i18n="footer_steam">Steam Page</a>
+        <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_legal">Legal</h4>
+        <a href="terms.html" data-i18n="footer_terms">Terms of Service</a>
+        <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; {{ year }} {{ studio_name }}. <span data-i18n="footer_rights">All rights reserved.</span></span>
+    <span>Cubic{{ ' ' }}&middot;{{ ' ' }}{{ studio_name }}</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

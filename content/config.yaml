@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------
+# Site-wide configuration.
+# Edit these values, then push to main — the site rebuilds itself.
+# ---------------------------------------------------------------
+
+# IMPORTANT: set this to your real GitHub Pages URL (or custom domain),
+# no trailing slash. Used for canonical links, sitemap.xml, and Open Graph tags.
+site_url: "https://twinturtlegames.github.io/cubic"
+
+site_name: "Cubic"
+studio_name: "Twin Turtle Games"
+tagline: "A melancholic isometric puzzle adventure across the last lands of a fallen world."
+contact_email: "contact.twinturtlegames@gmail.com"
+
+# Social + store links
+links:
+  steam: "https://store.steampowered.com/app/0000000/Cubic/"
+  discord: "https://discord.gg/your-invite"
+  youtube: "https://www.youtube.com/@twinturtlegames"
+  twitter: "https://twitter.com/twinturtlegames"
+  instagram: "https://instagram.com/twinturtlegames"
+
+trailer_youtube_id: "E4wOiwcpgao"
+
+# Newsletter form endpoint — point this at your provider
+# (Buttondown / Mailchimp / ConvertKit / etc). Left blank = local demo only.
+newsletter_endpoint: ""

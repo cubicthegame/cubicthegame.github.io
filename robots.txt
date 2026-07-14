@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.cubicthegame.com/sitemap.xml
-
-# Disallow any sensitive or staging paths below (none by default)
-# Disallow: /private
