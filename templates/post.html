@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<a class="back-link" href="news/">&larr; Back to news</a>
+<a class="back-link" href="{{ url('/news/') }}">&larr; Back to news</a>
 <section class="page-hero" style="padding-top:24px;">
   <span class="eyebrow">{{ post.date_display }}</span>
   <h1>{{ post.title }}</h1>
+  {% if post.author %}
+  <p class="post-author">Author: {{ post.author }}</p>
+  {% endif %}
 </section>
 
 <div class="post-hero-img" style="margin-top:36px;">
-  <img src="{{ post.cover }}" alt="{{ post.title }}" width="1280" height="720">
+  <img src="{{ url(post.cover) }}" alt="{{ post.title }}" width="1280" height="720">
 </div>
 
 <article class="post-content">

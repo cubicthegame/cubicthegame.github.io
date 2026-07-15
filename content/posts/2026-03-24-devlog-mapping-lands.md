@@ -2,7 +2,7 @@
 title: "Devlog #2 — Mapping the lands"
 date: 2026-03-24
 excerpt: "How we design a land in Cubic: from a single mechanical idea to a fully mapped, walkable puzzle space."
-cover: assets/images/screenshots/screenshot-2.jpg
+cover: /assets/images/screenshots/screenshot-2.jpg
 ---
 
 Every land in Cubic starts as a single rule scrawled on a whiteboard. Then we ask the only question that matters: what's the most surprising thing this rule can do once the player has seen it three times?

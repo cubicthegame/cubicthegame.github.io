@@ -14,7 +14,7 @@
 <meta property="og:title" content="{{ og_title|default(title) }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ site_url }}{{ path }}">
-<meta property="og:image" content="{{ site_url }}{{ og_image|default('assets/images/screenshots/screenshot-1.jpg') }}">
+<meta property="og:image" content="{{ site_url }}{{ og_image|default('/assets/images/screenshots/screenshot-1.jpg') }}">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="720">
 {% if og_video %}
@@ -25,13 +25,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title|default(title) }}">
 <meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ site_url }}{{ og_image|default('assets/images/screenshots/screenshot-1.jpg') }}">
+<meta name="twitter:image" content="{{ site_url }}{{ og_image|default('/assets/images/screenshots/screenshot-1.jpg') }}">
 
 <!-- Favicons -->
-<link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/images/favicon-48.png" sizes="48x48" type="image/png">
-<link rel="apple-touch-icon" href="assets/images/favicon-180.png">
-<link rel="icon" href="assets/images/logo-mini.png" type="image/png">
+<link rel="icon" href="{{ url('/assets/images/favicon-32.png') }}" sizes="32x32" type="image/png">
+<link rel="icon" href="{{ url('/assets/images/favicon-48.png') }}" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="{{ url('/assets/images/favicon-180.png') }}">
+<link rel="icon" href="{{ url('/assets/images/logo-mini.png') }}" type="image/png">
 
 <!-- Alternate languages -->
 <link rel="alternate" hreflang="en" href="{{ site_url }}{{ path }}">
@@ -41,27 +41,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="{{ url('/assets/css/style.css') }}">
 
 {% if schema %}
 <script type="application/ld+json">{{ schema | safe }}</script>
 {% endif %}
 {% block extra_head %}{% endblock %}
 </head>
-<body class="{{ body_class|default('') }}">
+<body class="{{ body_class|default('') }}" style="{{ body_style|default('') }}">
+
 
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-left">
-      <a class="brand" href="" aria-label="{{ site_name }} home">
-        <img src="assets/images/twinturtle-logo.png" alt="{{ studio_name }} logo" width="34" height="34">
+      <a class="brand" href="{{ url('/') }}" aria-label="{{ site_name }} home">
+        <img src="{{ url('/assets/images/twinturtle-logo.png') }}" alt="{{ studio_name }} logo" width="34" height="34">
       </a>
-      <a class="nav-link" href="news/" data-i18n="nav_news">News</a>
-      <a class="nav-link" href="presskit.html" data-i18n="nav_presskit">Press Kit</a>
+      <a class="nav-link" href="{{ url('/news/') }}" data-i18n="nav_news">News</a>
+      <a class="nav-link" href="{{ url('/presskit.html') }}" data-i18n="nav_presskit">Press Kit</a>
     </div>
 
     <div class="nav-center">
-      <img src="assets/images/logo-grayscale.png" alt="{{ site_name }}" width="140" height="32">
+      <a href="{{ url('/') }}" aria-label="{{ site_name }} home">
+        <img src="{{ url('/assets/images/logo-grayscale.png') }}" alt="{{ site_name }}" width="140" height="32" class="{{ 'is-visible' if path != '/' else '' }}">
+      </a>
     </div>
 
     <div class="nav-right">
@@ -98,8 +101,8 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img class="tt-logo" src="assets/images/twinturtle-logo.png" alt="{{ studio_name }}">
-      <img class="cubic-logo" src="assets/images/logo-grayscale.png" alt="{{ site_name }}">
+      <img class="tt-logo" src="{{ url('/assets/images/twinturtle-logo.png') }}" alt="{{ studio_name }}">
+      <img class="cubic-logo" src="{{ url('/assets/images/logo-grayscale.png') }}" alt="{{ site_name }}">
     </div>
     <div class="footer-links">
       <div class="footer-col">
@@ -109,8 +112,8 @@
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer_legal">Legal</h4>
-        <a href="terms.html" data-i18n="footer_terms">Terms of Service</a>
-        <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+        <a href="{{ url('/terms.html') }}" data-i18n="footer_terms">Terms of Service</a>
+        <a href="{{ url('/privacy.html') }}" data-i18n="footer_privacy">Privacy Policy</a>
       </div>
     </div>
   </div>
@@ -120,7 +123,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js" defer></script>
+<script src="{{ url('/assets/js/main.js') }}" defer></script>
 {% block extra_scripts %}{% endblock %}
 </body>
 </html>

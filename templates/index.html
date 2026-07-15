@@ -4,7 +4,7 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <img class="hero-logo" src="assets/images/logo-color-placeholder.png" alt="Cubic — logo" width="560" height="127">
+    <img class="hero-logo" src="{{ url('/assets/images/logo-color-placeholder.png') }}" alt="Cubic — logo" width="560" height="127">
     <p class="hero-tag" data-i18n="hero_tag">A melancholic isometric puzzle adventure across the last lands of a fallen world.</p>
   </div>
 </section>
@@ -14,7 +14,7 @@
     <div class="video-wrap cube-cut">
       <div class="ratio">
         <div class="video-thumb" data-youtube-id="{{ trailer_youtube_id }}" role="button" tabindex="0" aria-label="Play official Cubic trailer">
-          <img src="https://i.ytimg.com/vi/{{ trailer_youtube_id }}/maxresdefault.jpg" alt="Cubic — official trailer thumbnail" loading="lazy">
+          <img src="{{ url('/assets/images/trailer-poster.jpg') }}" alt="Cubic — official trailer, gameplay preview frame" loading="lazy" width="1280" height="720">
           <div class="play-btn"><span>{{ icon.play() }}</span></div>
         </div>
       </div>
@@ -31,7 +31,7 @@
 <section class="section" aria-label="Game features">
   <div class="feature-row">
     <div class="feature-media cube-cut">
-      <img src="assets/images/gifs/gameplay-1.gif" alt="Cubic gameplay — exploring an isometric land" loading="lazy" width="640" height="360">
+      <img src="{{ url('/assets/images/gifs/gameplay-1.gif') }}" alt="Cubic gameplay — exploring an isometric land" loading="lazy" width="640" height="360">
     </div>
     <div class="feature-copy">
       <span class="eyebrow">Exploration</span>
@@ -44,7 +44,7 @@ Uncover the secrets and treasures of humanity's final descendants.</p>
 
   <div class="feature-row reverse">
     <div class="feature-media cube-cut">
-      <img src="assets/images/gifs/gameplay-2.gif" alt="Cubic gameplay — solving a puzzle" loading="lazy" width="640" height="360">
+      <img src="{{ url('/assets/images/gifs/gameplay-2.gif') }}" alt="Cubic gameplay — solving a puzzle" loading="lazy" width="640" height="360">
     </div>
     <div class="feature-copy">
       <span class="eyebrow">Puzzles</span>
@@ -63,7 +63,7 @@ Choose your own path and engage at your own pace.</p>
   <div class="carousel">
     <div class="carousel-track">
       {% for shot in screenshots %}
-      <img src="{{ shot }}" alt="Cubic screenshot" loading="lazy" width="1280" height="720">
+      <img src="{{ url(shot.path) }}" alt="{{ shot.caption }}" loading="lazy" width="1280" height="720">
       {% endfor %}
     </div>
     <div class="carousel-controls">
@@ -76,17 +76,17 @@ Choose your own path and engage at your own pace.</p>
 <section class="section" aria-label="Latest news">
   <div class="section-head">
     <h2 data-i18n="news_title">Latest news</h2>
-    <a class="view-all" href="news/" data-i18n="view_all">View all</a>
+    <a class="view-all" href="{{ url('/news/') }}" data-i18n="view_all">View all</a>
   </div>
   <div class="news-grid">
     {% for post in latest_posts %}
     <article class="post-card">
-      <a href="{{ post.url }}" class="thumb">
-        <img src="{{ post.cover }}" alt="{{ post.title }}" loading="lazy" width="640" height="400">
+      <a href="{{ url(post.url) }}" class="thumb">
+        <img src="{{ url(post.cover) }}" alt="{{ post.title }}" loading="lazy" width="640" height="400">
       </a>
       <div class="body">
         <time datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
-        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <h3><a href="{{ url(post.url) }}">{{ post.title }}</a></h3>
         <p class="excerpt">{{ post.excerpt }}</p>
       </div>
     </article>
@@ -103,7 +103,7 @@ Choose your own path and engage at your own pace.</p>
     <button type="submit" data-i18n="subscribe_button">Subscribe</button>
   </form>
   <p class="subscribe-success" role="status" data-i18n="subscribe_success">Thanks — check your inbox to confirm.</p>
-  <p class="subscribe-note">We only use this to send Cubic updates. See our <a href="privacy.html">Privacy Policy</a>.</p>
+  <p class="subscribe-note">We only use this to send Cubic updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
 </section>
 
 {% endblock %}

@@ -143,21 +143,36 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .nav-burger{ display:none; }
 
 /* =========================================================
+   Page backdrop (front page only)
+   The background image lives on body itself, sized to cover the page's full
+   scroll height — so it scrolls normally with the page and progressively
+   reveals more of the artwork as you go, all the way to the footer.
+   --bg-fade (0–1, from content/config.yaml's hero_background_fade) controls
+   a gradient overlay that darkens toward the bottom of the page.
+   0 = image stays fully visible everywhere, no darkening at all.
+   ========================================================= */
+body.page-home{
+  position:relative;
+  background:url("../images/website.jpg") no-repeat top center / cover;
+}
+body.page-home::after{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(10,7,20,0) 0%, rgba(10,7,20,0) 15%, rgba(10,7,20, var(--bg-fade, 0)) 100%);
+}
+body.page-home footer.site-footer{
+  background:rgba(19,14,33,.6);
+  backdrop-filter:blur(10px) saturate(140%);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);
+}
+
+/* =========================================================
    Hero
    ========================================================= */
 .hero{
   position:relative;
-  background-image:url("../images/website.jpg");
-  background-repeat:no-repeat;
-  background-position:top center;
-  background-size:100% auto;         /* stretch width, keep natural height */
-  min-height:60vh;
-  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
-  text-align:center; padding:9vw 24px 4vw;
-}
-.hero::after{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(180deg, rgba(10,7,20,0) 0%, rgba(10,7,20,0.0) 55%, rgba(10,7,20,1) 100%);
+  min-height:64vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:10vw 24px 6vw;
 }
 .hero-inner{ position:relative; z-index:2; max-width:760px; margin:0 auto; }
 .hero-logo{ width:min(560px, 78vw); margin:0 auto 8px; filter:drop-shadow(0 18px 50px rgba(0,0,0,.55)); }
@@ -329,6 +344,10 @@ footer.site-footer{
 }
 .page-hero h1{ font-size:2.2rem; }
 .page-hero p{ max-width:560px; margin:0 auto; }
+.post-author{
+  margin:14px auto 0; font-family:var(--font-mono); font-size:.82rem;
+  color:var(--text-muted); letter-spacing:.02em;
+}
 
 /* News index */
 .news-index-grid{

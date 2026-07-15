@@ -1,11 +1,18 @@
+# ---------------------------------------------------------------
+# Site-wide configuration.
+# Edit these values, then push to main — the site rebuilds itself.
+# ---------------------------------------------------------------
 
-site_url: "https://www.cubicthegame.com"
+# IMPORTANT: set this to your real GitHub Pages URL (or custom domain),
+# no trailing slash. Used for canonical links, sitemap.xml, and Open Graph tags.
+site_url: "https://twinturtlegames.github.io/cubic"
 
 site_name: "Cubic"
 studio_name: "Twin Turtle Games"
 tagline: "A melancholic isometric puzzle adventure across the last lands of a fallen world."
 contact_email: "contact.twinturtlegames@gmail.com"
 
+# Social + store links
 links:
   steam: "https://store.steampowered.com/app/0000000/Cubic/"
   discord: "https://discord.gg/your-invite"
@@ -14,6 +21,35 @@ links:
   instagram: "https://instagram.com/twinturtlegames"
 
 trailer_youtube_id: "E4wOiwcpgao"
+
+# How much the front-page background image (website.jpg) darkens toward the
+# bottom of the hero as you scroll past it. Range 0–1:
+#   0   = image stays fully visible the whole time, no darkening at all.
+#   1   = strongest fade — dims all the way to the page background color.
+#   0.4 = a partial fade, somewhere in between.
+# Defaults to 0 (no fade).
+hero_background_fade: 0
+
+# Real publish date of the trailer video on YouTube (YYYY-MM-DD). Used in the
+# VideoObject structured data on the homepage — Google uses this for video
+# search results, so keep it accurate.
+trailer_upload_date: "2026-05-01"
+
+# Fallback image used for Open Graph / Twitter Card previews on pages that
+# don't have a more specific image of their own (e.g. the homepage itself).
+default_og_image: "/assets/images/screenshots/screenshot-1.jpg"
+
+# Descriptive alt text / SEO captions for each screenshot, keyed by filename.
+# Shown as the image's alt text (carousel + press kit) and as the <image:caption>
+# in sitemap.xml. Any screenshot file not listed here falls back to a generic
+# "Cubic — screenshot" caption, so this is safe to leave partially filled in.
+screenshot_captions:
+  screenshot-1.jpg: "Cubic screenshot — an isometric land seen from above, with a fractured sky overhead."
+  screenshot-2.jpg: "Cubic screenshot — a puzzle land rendered in warm, weathered tile colors."
+  screenshot-3.jpg: "Cubic screenshot — walking the grid paths of one of Cubic's lands."
+  screenshot-4.jpg: "Cubic screenshot — a close-up puzzle configuration mid-solve."
+  screenshot-5.jpg: "Cubic screenshot — the horizon of a fallen land under a violet sky."
+  screenshot-6.jpg: "Cubic screenshot — night lighting over one of Cubic's isometric lands."
 
 # Newsletter form endpoint — point this at your provider
 # (Buttondown / Mailchimp / ConvertKit / etc). Left blank = local demo only.

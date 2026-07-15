@@ -2,7 +2,7 @@
 title: "The demo is live on Steam"
 date: 2026-05-02
 excerpt: "You can play a slice of Cubic right now. Here's what's in the demo and how to tell us what you think."
-cover: assets/images/screenshots/screenshot-3.jpg
+cover: /assets/images/screenshots/screenshot-3.jpg
 ---
 
 The Cubic demo is live on Steam today. It covers the first two lands and roughly 45–60 minutes of play, start to finish.
