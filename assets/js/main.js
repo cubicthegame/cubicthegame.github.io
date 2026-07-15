@@ -35,7 +35,7 @@ const STRINGS = {
     subscribe_body: "Devlogs, patch notes and the occasional turtle. No spam, unsubscribe any time.",
     subscribe_placeholder: "you@example.com",
     subscribe_button: "Subscribe",
-    subscribe_success: "Thanks — check your inbox to confirm.",
+    subscribe_success: "Thanks - check your inbox to confirm.",
     footer_contact: "Contact",
     footer_legal: "Legal",
     footer_terms: "Terms of Service",
@@ -55,10 +55,10 @@ const STRINGS = {
     news_title: "Seneste nyheder",
     view_all: "Se alle",
     subscribe_title: "Tilmeld dig vores nyhedsbrev",
-    subscribe_body: "Devlogs, patch notes og en enkelt skildpadde. Ingen spam — afmeld når som helst.",
+    subscribe_body: "Devlogs, patch notes og en enkelt skildpadde. Ingen spam - afmeld når som helst.",
     subscribe_placeholder: "dig@eksempel.dk",
     subscribe_button: "Tilmeld",
-    subscribe_success: "Tak — bekræft venligst via din indbakke.",
+    subscribe_success: "Tak - bekræft venligst via din indbakke.",
     footer_contact: "Kontakt",
     footer_legal: "Juridisk",
     footer_terms: "Servicevilkår",
@@ -108,7 +108,7 @@ document.querySelectorAll('.video-thumb').forEach(thumb=>{
     const wrap = thumb.closest('.video-wrap').querySelector('.ratio');
     const iframe = document.createElement('iframe');
     iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
-    iframe.title = "Cubic — Official Trailer";
+    iframe.title = "Cubic - Official Trailer";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
     iframe.allowFullscreen = true;
     wrap.innerHTML = '';

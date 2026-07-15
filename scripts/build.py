@@ -12,7 +12,7 @@ What it does:
   5. Generates sitemap.xml and robots.txt.
 
 Run it with:  python3 scripts/build.py
-Output goes to ./dist  (this folder is what gets deployed to GitHub Pages —
+Output goes to ./dist  (this folder is what gets deployed to GitHub Pages -
 see .github/workflows/deploy.yml).
 
 To add a new blog post: drop a new markdown file into content/posts/,
@@ -28,7 +28,7 @@ named e.g. 2026-06-01-my-post-title.md, with frontmatter like:
     Body in **markdown** goes here.
 
 Push to main and the GitHub Action rebuilds and redeploys the whole site
-automatically — no manual HTML editing required.
+automatically - no manual HTML editing required.
 """
 import shutil
 import re
@@ -61,7 +61,7 @@ def xml_escape(s: str) -> str:
 
 
 def format_date(d) -> str:
-    """'%B %-d, %Y' but portable — %-d is Linux/Mac-only and crashes on Windows."""
+    """'%B %-d, %Y' but portable - %-d is Linux/Mac-only and crashes on Windows."""
     return f"{d.strftime('%B')} {d.day}, {d.year}"
 
 
@@ -73,7 +73,7 @@ def make_url(base: str):
       - a relative prefix like "", "../", "../../"  (depends on how deep the
         current output page sits), which makes every link/asset work both
         when served by a real web server *and* when a file is opened directly
-        via file:// (double-click) — no root-absolute paths anywhere, or
+        via file:// (double-click) - no root-absolute paths anywhere, or
       - an absolute URL prefix (site_url + "/"), used only for 404.html, which
         GitHub Pages can serve from any depth so it can't rely on a relative
         prefix.
@@ -143,7 +143,7 @@ def list_screenshots(cfg):
     for i, f in enumerate(files, start=1):
         out.append({
             "path": f"/assets/images/screenshots/{f.name}",
-            "caption": captions.get(f.name, f"Cubic — screenshot {i}"),
+            "caption": captions.get(f.name, f"Cubic - screenshot {i}"),
         })
     return out
 
@@ -160,7 +160,7 @@ def list_keyart():
             "png1x": f"/assets/images/keyart/{base}-1x.png",
             "png2x": f"/assets/images/keyart/{base}-2x.png",
             "ai": f"/assets/images/keyart/{base}.ai.txt",
-            "caption": f"Cubic key art — piece {i}",
+            "caption": f"Cubic key art - piece {i}",
         })
     return items
 
@@ -176,7 +176,7 @@ def video_game_schema(cfg):
         "publisher": {"@type": "Organization", "name": cfg["studio_name"]},
         "trailer": {
             "@type": "VideoObject",
-            "name": f"{cfg['site_name']} — Official Trailer",
+            "name": f"{cfg['site_name']} - Official Trailer",
             "description": cfg["tagline"],
             "thumbnailUrl": f"{cfg['site_url']}/assets/images/trailer-poster.jpg",
             "uploadDate": cfg["trailer_upload_date"],
@@ -239,7 +239,7 @@ def main():
         url=make_url(""),
         path="/",
         body_class="page-home",
-        title=f"{cfg['site_name']} — {cfg['studio_name']}",
+        title=f"{cfg['site_name']} - {cfg['studio_name']}",
         description=cfg["tagline"],
         og_type="website",
         og_image=cfg["default_og_image"],
@@ -249,10 +249,10 @@ def main():
     )
     (DIST / "index.html").write_text(html, encoding="utf-8")
     home_images = (
-        [(abs_url("/assets/images/logo-color-placeholder.png"), f"{cfg['site_name']} — game logo"),
-         (abs_url("/assets/images/trailer-poster.jpg"), f"{cfg['site_name']} — official trailer preview frame"),
-         (abs_url("/assets/images/gifs/gameplay-1.gif"), f"{cfg['site_name']} gameplay — exploring an isometric land"),
-         (abs_url("/assets/images/gifs/gameplay-2.gif"), f"{cfg['site_name']} gameplay — solving a puzzle")]
+        [(abs_url("/assets/images/logo-color-placeholder.png"), f"{cfg['site_name']} - game logo"),
+         (abs_url("/assets/images/trailer-poster.jpg"), f"{cfg['site_name']} - official trailer preview frame"),
+         (abs_url("/assets/images/gifs/gameplay-1.gif"), f"{cfg['site_name']} gameplay - exploring an isometric land"),
+         (abs_url("/assets/images/gifs/gameplay-2.gif"), f"{cfg['site_name']} gameplay - solving a puzzle")]
         + [(abs_url(s["path"]), s["caption"]) for s in screenshots]
         + [(abs_url(p["cover"]), p["title"]) for p in posts[:3]]
     )
@@ -263,7 +263,7 @@ def main():
         **common,
         url=make_url(""),
         path="/presskit.html",
-        title=f"Press Kit — {cfg['site_name']}",
+        title=f"Press Kit - {cfg['site_name']}",
         description=f"Key art, screenshots, and facts about {cfg['site_name']} for press and content creators.",
         og_type="website",
         og_image=cfg["default_og_image"],
@@ -283,7 +283,7 @@ def main():
             **common,
             url=make_url(""),
             path=f"/{name}.html",
-            title=f"{title} — {cfg['site_name']}",
+            title=f"{title} - {cfg['site_name']}",
             description=f"{title} for {cfg['site_name']}, by {cfg['studio_name']}.",
             page_title=title,
             updated=format_date(date.today()),
@@ -298,7 +298,7 @@ def main():
         **common,
         url=make_url("../"),
         path="/news/",
-        title=f"News — {cfg['site_name']}",
+        title=f"News - {cfg['site_name']}",
         description=f"Devlogs and updates about {cfg['site_name']} from {cfg['studio_name']}.",
         og_type="website",
         posts=posts,
@@ -315,7 +315,7 @@ def main():
             **common,
             url=make_url("../../"),
             path=post["url"],
-            title=f"{post['title']} — {cfg['site_name']}",
+            title=f"{post['title']} - {cfg['site_name']}",
             description=post["excerpt"],
             og_type="article",
             og_image=post["cover"],
@@ -358,7 +358,7 @@ def main():
         url=make_url(cfg["site_url"] + "/"),
         path="/",
         body_class="page-home",
-        title=f"{cfg['site_name']} — {cfg['studio_name']}",
+        title=f"{cfg['site_name']} - {cfg['studio_name']}",
         description=cfg["tagline"],
         og_type="website",
         og_image=cfg["default_og_image"],

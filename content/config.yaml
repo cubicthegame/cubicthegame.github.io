@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------
 # Site-wide configuration.
-# Edit these values, then push to main — the site rebuilds itself.
+# Edit these values, then push to main - the site rebuilds itself.
 # ---------------------------------------------------------------
 
 # IMPORTANT: set this to your real GitHub Pages URL (or custom domain),
@@ -23,7 +23,7 @@ links:
 trailer_youtube_id: "E4wOiwcpgao"
 
 # Real publish date of the trailer video on YouTube (YYYY-MM-DD). Used in the
-# VideoObject structured data on the homepage — Google uses this for video
+# VideoObject structured data on the homepage - Google uses this for video
 # search results, so keep it accurate.
 trailer_upload_date: "2026-06-27"
 
@@ -34,15 +34,15 @@ default_og_image: "/assets/images/screenshots/screenshot-1.jpg"
 # Descriptive alt text / SEO captions for each screenshot, keyed by filename.
 # Shown as the image's alt text (carousel + press kit) and as the <image:caption>
 # in sitemap.xml. Any screenshot file not listed here falls back to a generic
-# "Cubic — screenshot" caption, so this is safe to leave partially filled in.
+# "Cubic - screenshot" caption, so this is safe to leave partially filled in.
 screenshot_captions:
-  screenshot-1.jpg: "Cubic screenshot — an isometric land seen from above, with a fractured sky overhead."
-  screenshot-2.jpg: "Cubic screenshot — a puzzle land rendered in warm, weathered tile colors."
-  screenshot-3.jpg: "Cubic screenshot — walking the grid paths of one of Cubic's lands."
-  screenshot-4.jpg: "Cubic screenshot — a close-up puzzle configuration mid-solve."
-  screenshot-5.jpg: "Cubic screenshot — the horizon of a fallen land under a violet sky."
-  screenshot-6.jpg: "Cubic screenshot — night lighting over one of Cubic's isometric lands."
+  screenshot-1.jpg: "Cubic screenshot - an isometric land seen from above, with a fractured sky overhead."
+  screenshot-2.jpg: "Cubic screenshot - a puzzle land rendered in warm, weathered tile colors."
+  screenshot-3.jpg: "Cubic screenshot - walking the grid paths of one of Cubic's lands."
+  screenshot-4.jpg: "Cubic screenshot - a close-up puzzle configuration mid-solve."
+  screenshot-5.jpg: "Cubic screenshot - the horizon of a fallen land under a violet sky."
+  screenshot-6.jpg: "Cubic screenshot - night lighting over one of Cubic's isometric lands."
 
-# Newsletter form endpoint — point this at your provider
+# Newsletter form endpoint - point this at your provider
 # (Buttondown / Mailchimp / ConvertKit / etc). Left blank = local demo only.
 newsletter_endpoint: ""

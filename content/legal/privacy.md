@@ -6,7 +6,7 @@ This site does not use tracking cookies or third-party analytics by default. If 
 
 ## How we use it
 
-Your email address is used only to send you updates about Cubic — devlogs, release announcements, and similar news. We don't sell or share your email address with third parties.
+Your email address is used only to send you updates about Cubic - devlogs, release announcements, and similar news. We don't sell or share your email address with third parties.
 
 ## Your choices
 

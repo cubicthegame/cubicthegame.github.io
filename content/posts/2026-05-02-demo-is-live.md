@@ -17,4 +17,4 @@ The Cubic demo is live on Steam today. It covers the first two lands and roughly
 
 Later lands, the full soundtrack, and a few systems that are still being tuned. The demo is a slice, not a vertical prototype.
 
-Wishlist the game and grab the demo from the Steam page linked at the top of this site — and if you play it, we'd love to hear what you thought.
+Wishlist the game and grab the demo from the Steam page linked at the top of this site - and if you play it, we'd love to hear what you thought.

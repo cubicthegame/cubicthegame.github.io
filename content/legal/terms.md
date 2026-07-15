@@ -4,7 +4,7 @@ This website is provided by Twin Turtle Games to share information about Cubic, 
 
 ## 2. Intellectual property
 
-All artwork, logos, screenshots, video, and text on this site — including the Cubic and Twin Turtle Games logos — are the property of Twin Turtle Games unless otherwise noted, and may not be reproduced without permission, except as explicitly permitted in our Press Kit.
+All artwork, logos, screenshots, video, and text on this site - including the Cubic and Twin Turtle Games logos - are the property of Twin Turtle Games unless otherwise noted, and may not be reproduced without permission, except as explicitly permitted in our Press Kit.
 
 ## 3. Third-party links
 

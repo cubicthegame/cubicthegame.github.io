@@ -1,5 +1,5 @@
 ---
-title: "Devlog #2 — Mapping the lands"
+title: "Devlog #2 - Mapping the lands"
 date: 2026-03-24
 excerpt: "How we design a land in Cubic: from a single mechanical idea to a fully mapped, walkable puzzle space."
 cover: /assets/images/screenshots/screenshot-2.jpg
@@ -13,6 +13,6 @@ We block out a land first with flat grey tiles and no art at all, so the puzzle 
 
 ## Then the mood arrives
 
-Once the layout holds up, art and lighting move in — the color grading, the ambient audio, the small environmental details that make a land feel lived-in and recently abandoned.
+Once the layout holds up, art and lighting move in - the color grading, the ambient audio, the small environmental details that make a land feel lived-in and recently abandoned.
 
 We'll go deeper on the puzzle-design side in the next post. For now, here's a look at one of the lands taking shape.
