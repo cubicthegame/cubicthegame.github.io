@@ -5,7 +5,7 @@
 
 # IMPORTANT: set this to your real GitHub Pages URL (or custom domain),
 # no trailing slash. Used for canonical links, sitemap.xml, and Open Graph tags.
-site_url: "https://twinturtlegames.github.io/cubic"
+site_url: "https://www.cubicthegame.com"
 
 site_name: "Cubic"
 studio_name: "Twin Turtle Games"
@@ -14,18 +14,18 @@ contact_email: "contact.twinturtlegames@gmail.com"
 
 # Social + store links
 links:
-  steam: "https://store.steampowered.com/app/0000000/Cubic/"
-  discord: "https://discord.gg/your-invite"
-  youtube: "https://www.youtube.com/@twinturtlegames"
-  twitter: "https://twitter.com/twinturtlegames"
-  instagram: "https://instagram.com/twinturtlegames"
+  steam: "https://store.steampowered.com/app/3037080/Cubic"
+  discord: "https://discord.com/invite/W6vzChE5JC"
+  youtube: "https://www.youtube.com/watch?v=E4wOiwcpgao"
+  twitter: "https://x.com/vwarrior99"
+  instagram: "https://www.instagram.com/cubicthegame"
 
 trailer_youtube_id: "E4wOiwcpgao"
 
 # Real publish date of the trailer video on YouTube (YYYY-MM-DD). Used in the
 # VideoObject structured data on the homepage — Google uses this for video
 # search results, so keep it accurate.
-trailer_upload_date: "2026-05-01"
+trailer_upload_date: "2026-06-27"
 
 # Fallback image used for Open Graph / Twitter Card previews on pages that
 # don't have a more specific image of their own (e.g. the homepage itself).
