@@ -22,14 +22,6 @@ links:
 
 trailer_youtube_id: "E4wOiwcpgao"
 
-# How much the front-page background image (website.jpg) darkens toward the
-# bottom of the hero as you scroll past it. Range 0–1:
-#   0   = image stays fully visible the whole time, no darkening at all.
-#   1   = strongest fade — dims all the way to the page background color.
-#   0.4 = a partial fade, somewhere in between.
-# Defaults to 0 (no fade).
-hero_background_fade: 0
-
 # Real publish date of the trailer video on YouTube (YYYY-MM-DD). Used in the
 # VideoObject structured data on the homepage — Google uses this for video
 # search results, so keep it accurate.

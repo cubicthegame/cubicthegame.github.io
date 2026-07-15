@@ -140,15 +140,6 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 
 .nav-burger{ display:none; }
 
-/* =========================================================
-   Page backdrop (front page only)
-   The background image lives on body itself, sized to cover the page's full
-   scroll height — so it scrolls normally with the page and progressively
-   reveals more of the artwork as you go, all the way to the footer.
-   --bg-fade (0–1, from content/config.yaml's hero_background_fade) controls
-   a gradient overlay that darkens toward the bottom of the page.
-   0 = image stays fully visible everywhere, no darkening at all.
-   ========================================================= */
 body.page-home{
   position:relative;
   background:url("../images/website.jpg") no-repeat top center / cover;

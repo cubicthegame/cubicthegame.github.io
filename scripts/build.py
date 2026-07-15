@@ -239,7 +239,6 @@ def main():
         url=make_url(""),
         path="/",
         body_class="page-home",
-        body_style=f"--bg-fade:{cfg.get('hero_background_fade', 0)};",
         title=f"{cfg['site_name']} — {cfg['studio_name']}",
         description=cfg["tagline"],
         og_type="website",
@@ -247,7 +246,6 @@ def main():
         schema=video_game_schema(cfg),
         latest_posts=posts[:3],
         screenshots=screenshots,
-        hero_background_fade=cfg.get("hero_background_fade", 0),
     )
     (DIST / "index.html").write_text(html, encoding="utf-8")
     home_images = (
@@ -360,7 +358,6 @@ def main():
         url=make_url(cfg["site_url"] + "/"),
         path="/",
         body_class="page-home",
-        body_style=f"--bg-fade:{cfg.get('hero_background_fade', 0)};",
         title=f"{cfg['site_name']} — {cfg['studio_name']}",
         description=cfg["tagline"],
         og_type="website",
@@ -368,7 +365,6 @@ def main():
         schema=video_game_schema(cfg),
         latest_posts=posts[:3],
         screenshots=screenshots,
-        hero_background_fade=cfg.get("hero_background_fade", 0),
     )
     (DIST / "404.html").write_text(html, encoding="utf-8")
 
