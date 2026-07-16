@@ -56,11 +56,6 @@ p{ margin:0 0 1em; color:var(--text-muted); }
   font-size:.72rem; color:var(--accent-lavender); display:block; margin-bottom:.6em;
 }
 
-/* clipped-corner "cube facet" shape - the site's signature motif */
-.cube-cut{
-  clip-path: polygon(var(--radius-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--radius-cut));
-}
-
 /* focus visibility */
 a:focus-visible, button:focus-visible, input:focus-visible{
   outline:2px solid var(--accent-lavender);
