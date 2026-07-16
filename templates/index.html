@@ -104,14 +104,14 @@ Choose your own path and engage at your own pace.</p>
 
 <section class="subscribe" aria-label="Newsletter signup">
   <h2 data-i18n="subscribe_title">Subscribe to our newsletter</h2>
-  <p data-i18n="subscribe_body">Devlogs, patch notes and the occasional turtle. No spam, unsubscribe any time.</p>
+  <p data-i18n="subscribe_body">Devlogs, patch notes and occasional turtle. No spam, unsubscribe any time.</p>
   <form class="subscribe-form" action="{{ newsletter_endpoint }}" method="post">
     <label class="sr-only" for="email">Email address</label>
     <input type="email" id="email" name="email" required data-i18n-placeholder="subscribe_placeholder" placeholder="you@example.com">
     <button type="submit" data-i18n="subscribe_button">Subscribe</button>
   </form>
   <p class="subscribe-success" role="status" data-i18n="subscribe_success">Thanks - check your inbox to confirm.</p>
-  <p class="subscribe-note">We only use this to send Cubic updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
+  <p class="subscribe-note">We only use this to send Twin Turtle Games updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
 </section>
 
 {% endblock %}
