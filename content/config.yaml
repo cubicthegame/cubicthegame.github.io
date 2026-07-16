@@ -29,14 +29,14 @@ trailer_upload_date: "2026-06-27"
 
 # Fallback image used for Open Graph / Twitter Card previews on pages that
 # don't have a more specific image of their own (e.g. the homepage itself).
-default_og_image: "/assets/images/screenshots/screenshot-1.jpg"
+default_og_image: "/assets/images/screenshots/keyart1.png"
 
 # Descriptive alt text / SEO captions for each screenshot, keyed by filename.
 # Shown as the image's alt text (carousel + press kit) and as the <image:caption>
 # in sitemap.xml. Any screenshot file not listed here falls back to a generic
 # "Cubic - screenshot" caption, so this is safe to leave partially filled in.
 screenshot_captions:
-  screenshot-1.jpg: "Cubic screenshot - an isometric land seen from above, with a fractured sky overhead."
+  keyart1.png: "Cubic key art - an isometric land seen from above, with a fractured sky overhead."
   screenshot-2.jpg: "Cubic screenshot - a puzzle land rendered in warm, weathered tile colors."
   screenshot-3.jpg: "Cubic screenshot - walking the grid paths of one of Cubic's lands."
   screenshot-4.jpg: "Cubic screenshot - a close-up puzzle configuration mid-solve."

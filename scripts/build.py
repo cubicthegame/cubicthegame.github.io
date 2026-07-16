@@ -122,7 +122,7 @@ def load_posts():
             "date_display": format_date(d) if hasattr(d, "strftime") else str(d),
             "excerpt": meta.get("excerpt", ""),
             "author": meta.get("author"),
-            "cover": meta.get("cover", "/assets/images/screenshots/screenshot-1.jpg"),
+            "cover": meta.get("cover", "/assets/images/screenshots/keyart1.png"),
             "slug": slug,
             "url": f"/news/{slug}/",
             "html": html,
