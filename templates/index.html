@@ -7,6 +7,12 @@
     <img class="hero-logo" src="{{ url('/assets/images/logo-color-placeholder.png') }}" alt="Cubic - logo" width="560" height="127">
     <p class="hero-tag" data-i18n="hero_tag">Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.</p>
   </div>
+    <div class="demo-cta">
+        <p data-i18n="demo_cta">DEMO now on Steam!</p>
+        <a class="wishlist-btn" href="{{ links.steam }}" target="_blank" rel="noopener">
+            {{ icon.steam() }} <span>PLAY DEMO!</span>
+        </a>
+    </div>
 </section>
 
 <section class="section" id="trailer" aria-label="Official trailer">
@@ -18,12 +24,6 @@
           <div class="play-btn"><span>{{ icon.play() }}</span></div>
         </div>
       </div>
-    </div>
-    <div class="demo-cta">
-      <p data-i18n="demo_cta">Play the DEMO now on Steam</p>
-      <a class="steam-pill" href="{{ links.steam }}" target="_blank" rel="noopener">
-        {{ icon.steam() }} <span>Steam</span>
-      </a>
     </div>
   </div>
 </section>

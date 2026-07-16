@@ -21,7 +21,7 @@ onScroll();
 // ===== Language switch =====
 const STRINGS = {
   en: {
-    nav_news: "News", nav_presskit: "Press Kit", nav_wishlist: "Wishlist now!",
+    nav_news: "News", nav_presskit: "Press Kit", nav_wishlist: "Steam page",
     hero_tag: "Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.",
     demo_cta: "Play the DEMO now on Steam",
     feat1_title: "Explore what remains",
