@@ -41,7 +41,7 @@ const STRINGS = {
     footer_terms: "Terms of Service",
     footer_privacy: "Privacy Policy",
     footer_steam: "Steam Page",
-    footer_rights: "All rights reserved."
+    // footer_rights: "All rights reserved."
   },
   da: {
     nav_news: "Nyheder", nav_presskit: "Presseki t", nav_wishlist: "Ønsk dig den nu!",
