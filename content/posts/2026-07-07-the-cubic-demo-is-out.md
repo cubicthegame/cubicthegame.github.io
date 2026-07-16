@@ -32,15 +32,15 @@ Below is a FAQ about the Demo and that is the end of this first devlog. Be sure 
 
 ## FAQ about the Demo
 
-* What platforms is the demo available on?
+* *What platforms is the demo available on?*
 
 For now, only Windows. The shader-graphics are currently causing problems on Linux and Mac. We will make an update as soon as it is playable on other platforms.
 
-* Is controller/gamepad supported?
+* *Is controller/gamepad supported?*
 
 Gamepad is supported but the UI prompts show the keyboard bindings only.
 
-* What languages are supported?
+* *What languages are supported?*
 
 Text is only used for menus and tooltips. The languages we support for this purpose are
 
@@ -62,11 +62,11 @@ Text is only used for menus and tooltips. The languages we support for this purp
 
 The original text was written in English. If you find any translation unsatisfactory, feel free to contact us! (On Discord we have a channel dedicated to translation comments)
 
-* How long is the demo?
+* *How long is the demo?*
 
 It takes most players around 30-45 minutes to complete the demo.
 
-* How long is the full game?
+* *How long is the full game?*
 
 The full game will be substantially larger. The demo is somewhat a tutorial for the full game, so expect a much bigger world to explore - one that constantly presents new ideas and puzzles.
 
