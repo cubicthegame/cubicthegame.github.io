@@ -11,12 +11,12 @@
   <article class="post-card">
     <a href="{{ url(post.url) }}" class="thumb">
       <img src="{{ url(post.cover) }}" alt="{{ post.title }}" loading="lazy" width="640" height="400">
+      <div class="overlay">
+        <time datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
+        <h3>{{ post.title }}</h3>
+        <p class="excerpt">{{ post.excerpt }}</p>
+      </div>
     </a>
-    <div class="body">
-      <time datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
-      <h3><a href="{{ url(post.url) }}">{{ post.title }}</a></h3>
-      <p class="excerpt">{{ post.excerpt }}</p>
-    </div>
   </article>
   {% endfor %}
 </div>
