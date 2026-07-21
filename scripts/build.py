@@ -251,8 +251,8 @@ def main():
     home_images = (
         [(abs_url("/assets/images/logo-color-placeholder.png"), f"{cfg['site_name']} - game logo"),
          (abs_url("/assets/images/trailer-poster.jpg"), f"{cfg['site_name']} - official trailer preview frame"),
-         (abs_url("/assets/images/videos/Webpage_Overworld_alt.mp4"), f"{cfg['site_name']} gameplay - exploring an isometric land"),
-         (abs_url("/assets/images/videos/Webpage_Puzzle.mp4"), f"{cfg['site_name']} gameplay - solving a puzzle")]
+         (abs_url("/assets/webm/Webpage_Overworld_alt.webm"), f"{cfg['site_name']} gameplay - exploring an isometric land"),
+         (abs_url("/assets/webm/Webpage_Puzzle.webm"), f"{cfg['site_name']} gameplay - solving a puzzle")]
         + [(abs_url(s["path"]), s["caption"]) for s in screenshots]
         + [(abs_url(p["cover"]), p["title"]) for p in posts[:3]]
     )
