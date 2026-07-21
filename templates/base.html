@@ -33,10 +33,6 @@
 <link rel="apple-touch-icon" href="{{ url('/assets/images/favicon-180.png') }}">
 <link rel="icon" href="{{ url('/assets/images/logo-mini.png') }}" type="image/png">
 
-<!-- Alternate languages -->
-<link rel="alternate" hreflang="en" href="{{ site_url }}{{ path }}">
-<link rel="alternate" hreflang="da" href="{{ site_url }}{{ path }}">
-<link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ path }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,8 +53,8 @@
       <a class="brand" href="{{ url('/') }}" aria-label="{{ site_name }} home">
         <img src="{{ url('/assets/images/favicon-180.png') }}" alt="{{ site_name }} logo" width="34" height="34">
       </a>
-      <a class="nav-link" href="{{ url('/news/') }}" data-i18n="nav_news">News</a>
-      <a class="nav-link" href="{{ url('/presskit.html') }}" data-i18n="nav_presskit">Press Kit</a>
+      <a class="nav-link" href="{{ url('/news/') }}">News</a>
+      <a class="nav-link" href="{{ url('/presskit.html') }}">Press Kit</a>
     </div>
 
     <div class="nav-center">
@@ -75,19 +71,8 @@
         <a href="{{ links.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon.instagram() }}</a>
       </nav>
 
-      <div class="lang-switch">
-        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
-          {{ icon.globe() }}
-          <span class="lang-text lang-current">EN</span>
-        </button>
-        <div class="lang-menu" role="menu">
-          <button data-lang="en" aria-selected="true" role="menuitem">English</button>
-          <button data-lang="da" aria-selected="false" role="menuitem">Dansk</button>
-        </div>
-      </div>
-
         <a class="steam-pill" href="{{ links.steam }}" target="_blank" rel="noopener">
-        <span class="wl-text" data-i18n="nav_wishlist">WISHLIST NOW</span>
+        <span class="wl-text">WISHLIST NOW</span>
         {{ icon.steam() }}
       </a>
     </div>
@@ -111,19 +96,19 @@
     </div>
     <div class="footer-links">
       <div class="footer-col">
-        <h4 data-i18n="footer_contact">Contact</h4>
-        <a href="{{ links.steam }}" target="_blank" rel="noopener" data-i18n="footer_steam">Steam Page</a>
+        <h4>Contact</h4>
+        <a href="{{ links.steam }}" target="_blank" rel="noopener">Steam Page</a>
         <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="footer_legal">Legal</h4>
-        <a href="{{ url('/terms.html') }}" data-i18n="footer_terms">Terms of Service</a>
-        <a href="{{ url('/privacy.html') }}" data-i18n="footer_privacy">Privacy Policy</a>
+        <h4>Legal</h4>
+        <a href="{{ url('/terms.html') }}">Terms of Service</a>
+        <a href="{{ url('/privacy.html') }}">Privacy Policy</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>{{ year }} {{ studio_name }} </span><!-- <span data-i18n="footer_rights">All rights reserved.</span></span> -->
+    <span>{{ year }} {{ studio_name }} </span><!-- <span>All rights reserved.</span></span> -->
     <span>Cubic{{ ' ' }}&middot;{{ ' ' }}{{ studio_name }}</span>
   </div>
 </footer>

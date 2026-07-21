@@ -5,7 +5,7 @@
 <section class="section frontbar frontbar-intro" aria-label="Trailer">
   <div class="container intro-inner">
     <img class="hero-logo" src="{{ url('/assets/images/logo-color-placeholder.png') }}" alt="Cubic - logo" width="560" height="127">
-    <p class="hero-tag" data-i18n="hero_tag">Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.</p>
+    <p class="hero-tag">Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.</p>
 
     <div class="video-wrap" id="trailer">
       <div class="ratio">
@@ -22,7 +22,7 @@
 
     <div class="demo-cta">
       <a class="wishlist-btn play-demo-btn" href="{{ links.steam }}" target="_blank" rel="noopener">
-        {{ icon.steam() }} <span data-i18n="demo_cta_button">PLAY DEMO!</span>
+        {{ icon.steam() }} <span>PLAY DEMO!</span>
       </a>
     </div>
   </div>
@@ -45,8 +45,8 @@
     </div>
     <div class="feature-copy">
       <span class="eyebrow">Exploration</span>
-      <h3 data-i18n="feat1_title">Explore what remains</h3>
-      <p data-i18n="feat1_body">Map out disparate lands and overcome their unique challenges.
+      <h3>Explore what remains</h3>
+      <p>Map out disparate lands and overcome their unique challenges.
 Immerse yourself in the calm and melancholic atmosphere of what remains.
 Uncover the secrets and treasures of humanity's final descendants.</p>
     </div>
@@ -62,8 +62,8 @@ Uncover the secrets and treasures of humanity's final descendants.</p>
     </div>
     <div class="feature-copy">
       <span class="eyebrow">Puzzles</span>
-      <h3 data-i18n="feat2_title">Simple rules, deep puzzles</h3>
-      <p data-i18n="feat2_body">Enjoy a minimalistic ruleset that's easy to learn and fun to master.
+      <h3>Simple rules, deep puzzles</h3>
+      <p>Enjoy a minimalistic ruleset that's easy to learn and fun to master.
 Solve deeper and deeper puzzles, as simple rules combine into surprising results.
 Choose your own path and engage at your own pace.</p>
     </div>
@@ -73,7 +73,7 @@ Choose your own path and engage at your own pace.</p>
 <!--
 <section class="section" aria-label="Screenshots">
   <div class="section-head">
-    <h2 data-i18n="screenshots_title">Screenshots</h2>
+    <h2>Screenshots</h2>
   </div>
   <div class="carousel">
     <div class="carousel-track">
@@ -91,8 +91,8 @@ Choose your own path and engage at your own pace.</p>
 
 <section class="section frontbar frontbar-crystal" aria-label="Latest news and newsletter">
   <div class="section-head">
-    <h2 data-i18n="news_title">Latest news</h2>
-    <a class="view-all" href="{{ url('/news/') }}" data-i18n="view_all">View all</a>
+    <h2>Latest news</h2>
+    <a class="view-all" href="{{ url('/news/') }}">View all</a>
   </div>
   <div class="news-grid">
     {% for post in latest_posts %}
@@ -110,14 +110,14 @@ Choose your own path and engage at your own pace.</p>
   </div>
 
   <div class="subscribe" aria-label="Newsletter signup">
-    <h2 data-i18n="subscribe_title">Subscribe to our newsletter</h2>
-    <p data-i18n="subscribe_body">Devlogs, patch notes and occasional turtle. No spam, unsubscribe any time.</p>
+    <h2>Subscribe to our newsletter</h2>
+    <p>Devlogs, patch notes and occasional turtle. No spam, unsubscribe any time.</p>
     <form class="subscribe-form" action="{{ newsletter_endpoint }}" method="post">
       <label class="sr-only" for="email">Email address</label>
-      <input type="email" id="email" name="email" required data-i18n-placeholder="subscribe_placeholder" placeholder="you@example.com">
-      <button type="submit" data-i18n="subscribe_button">Subscribe</button>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+      <button type="submit">Subscribe</button>
     </form>
-    <p class="subscribe-success" role="status" data-i18n="subscribe_success">Thanks - check your inbox to confirm.</p>
+    <p class="subscribe-success" role="status">Thanks - check your inbox to confirm.</p>
     <p class="subscribe-note">We only use this to send Twin Turtle Games updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
   </div>
 </section>
