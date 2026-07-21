@@ -23,7 +23,7 @@ const STRINGS = {
   en: {
     nav_news: "News", nav_presskit: "Press Kit", nav_wishlist: "WISHLIST NOW",
     hero_tag: "Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.",
-    demo_cta: "Play the DEMO now on Steam",
+    demo_cta_button: "PLAY DEMO!",
     feat1_title: "Explore what remains",
     feat1_body: "Map out disparate lands and overcome their unique challenges.\nImmerse yourself in the calm and melancholic atmosphere of what remains.\nUncover the secrets and treasures of humanity's final descendants.",
     feat2_title: "Simple rules, deep puzzles",
@@ -46,7 +46,7 @@ const STRINGS = {
   da: {
     nav_news: "Nyheder", nav_presskit: "Presseki t", nav_wishlist: "Ønsk dig den nu!",
     hero_tag: "Et melankolsk, isometrisk puslespilseventyr gennem de sidste lande i en falden verden.",
-    demo_cta: "Spil DEMOEN nu på Steam",
+    demo_cta_button: "SPIL DEMOEN!",
     feat1_title: "Udforsk det, der er tilbage",
     feat1_body: "Kortlæg forskellige lande og overvind deres unikke udfordringer.\nFordyb dig i den rolige og melankolske stemning af det, der er tilbage.\nAfdæk hemmeligheder og skatte fra menneskehedens sidste efterkommere.",
     feat2_title: "Simple regler, dybe gåder",
@@ -100,21 +100,6 @@ if (langBtn && langMenu){
   });
 }
 applyLang(localStorage.getItem('cubic-lang') || 'en');
-
-// ===== Trailer: click-to-load embed (perf + avoids extra 3rd-party requests until needed) =====
-document.querySelectorAll('.video-thumb').forEach(thumb=>{
-  thumb.addEventListener('click', ()=>{
-    const id = thumb.dataset.youtubeId;
-    const wrap = thumb.closest('.video-wrap').querySelector('.ratio');
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
-    iframe.title = "Cubic - Official Trailer";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    iframe.allowFullscreen = true;
-    wrap.innerHTML = '';
-    wrap.appendChild(iframe);
-  });
-});
 
 // ===== Screenshot carousel =====
 const track = document.querySelector('.carousel-track');

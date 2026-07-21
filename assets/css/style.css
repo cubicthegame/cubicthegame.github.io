@@ -135,61 +135,49 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 
 .nav-burger{ display:none; }
 
-body.page-home{
-  position:relative;
-  background:url("../images/website.jpg") no-repeat top center / cover;
-}
-body.page-home::after{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  background:linear-gradient(180deg, rgba(10,7,20,0) 0%, rgba(10,7,20,0) 15%, rgba(10,7,20, var(--bg-fade, 0)) 100%);
-}
 body.page-home footer.site-footer{
   background:rgba(19,14,33,.82);
 }
 
 /* =========================================================
-   Hero
-   ========================================================= */
-.hero{
-  position:relative;
-  min-height:64vh;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:10vw 24px 6vw;
-}
-.hero-inner{ position:relative; z-index:2; max-width:760px; margin:0 auto; }
-.hero-logo{ width:min(560px, 78vw); height:auto; margin:0 auto 8px; }
-.hero-tag{ color:var(--text-muted); font-size:1.05rem; max-width:520px; margin:0 auto; }
-
-/* =========================================================
-   Video / trailer section
+   Front page background bars
    ========================================================= */
 .section{ padding:80px 0; position:relative; }
+.frontbar{
+  background-color:var(--bg-void);
+  background-repeat:repeat-x;
+  background-position:top center;
+}
+.frontbar-intro{ background-image:url("../images/bg/blackbar_intro_big.png"); }
+.frontbar-desert{ background-image:url("../images/bg/blackbar_desert_big.png"); }
+.frontbar-crystal{ background-image:url("../images/bg/blackbar_crystal_big.png"); }
+
+/* =========================================================
+   Intro: logo + trailer + demo button
+   ========================================================= */
+.frontbar-intro{ padding-top:40px; padding-bottom:64px; text-align:center; }
+.intro-inner{ max-width:900px; }
+.hero-logo{ width:min(480px, 70vw); height:auto; margin:0 auto 14px; }
+.hero-tag{ color:var(--text-muted); font-size:1.05rem; max-width:520px; margin:0 auto 36px; }
+
+/* =========================================================
+   Video / trailer
+   ========================================================= */
 .video-wrap{
   max-width:920px; margin:0 auto; position:relative;
   border:1px solid var(--line); background:var(--bg-surface);
 }
 .video-wrap .ratio{ position:relative; padding-top:56.25%; }
-.video-wrap iframe, .video-wrap .video-thumb{
+.video-wrap iframe{
   position:absolute; inset:0; width:100%; height:100%; border:0;
 }
-.video-thumb{ position:absolute; inset:0; cursor:pointer; }
-.video-thumb img{ width:100%; height:100%; object-fit:cover; }
-.play-btn{
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-}
-.play-btn span{
-  width:82px; height:82px; border-radius:50%; background:rgba(10,7,20,.72);
-  border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center;
-  transition:transform .2s, background .2s;
-}
-.video-thumb:hover .play-btn span{ transform:scale(1.06); background:rgba(124,92,196,.55); }
-.play-btn svg{ width:26px; height:26px; margin-left:4px; }
 
 .demo-cta{
-  display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;
-  margin:28px auto 0; max-width:920px; text-align:center;
+  display:flex; align-items:center; justify-content:center;
+  margin:32px auto 0; max-width:920px; text-align:center;
 }
-.demo-cta p{ margin:0; font-size:1.05rem; color:var(--text-primary); }
+.demo-cta .wishlist-btn{ font-size:1.3rem; padding:16px 32px; border-radius:10px; }
+.demo-cta .wishlist-btn svg{ width:24px; height:24px; }
 .steam-pill{
   display:inline-flex; align-items:center; gap:10px; background:var(--bg-surface-2);
   border:1px solid var(--line-strong); padding:10px 18px; border-radius:999px;
@@ -427,7 +415,7 @@ footer.site-footer{
   .footer-inner{ flex-direction:column; }
 }
 @media (max-width:520px){
-  .hero{ padding-top:22vw; }
+  .frontbar-intro{ padding-top:14vw; }
   .hero-logo{ width:min(300px, 62vw); }
   .hero-tag{ font-size:.95rem; }
   .press-shots-grid{ grid-template-columns:1fr; }

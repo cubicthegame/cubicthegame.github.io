@@ -2,33 +2,33 @@
 {% import "_icons.html" as icon %}
 {% block content %}
 
-<section class="hero">
-  <div class="hero-inner">
+<section class="section frontbar frontbar-intro" aria-label="Trailer">
+  <div class="container intro-inner">
     <img class="hero-logo" src="{{ url('/assets/images/logo-color-placeholder.png') }}" alt="Cubic - logo" width="560" height="127">
     <p class="hero-tag" data-i18n="hero_tag">Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.</p>
-  </div>
-    <div class="demo-cta">
-        <p data-i18n="demo_cta">DEMO now on Steam!</p>
-        <a class="wishlist-btn" href="{{ links.steam }}" target="_blank" rel="noopener">
-            {{ icon.steam() }} <span>PLAY DEMO!</span>
-        </a>
-    </div>
-</section>
 
-<section class="section" id="trailer" aria-label="Official trailer">
-  <div class="container">
-    <div class="video-wrap">
+    <div class="video-wrap" id="trailer">
       <div class="ratio">
-        <div class="video-thumb" data-youtube-id="{{ trailer_youtube_id }}" role="button" tabindex="0" aria-label="Play official Cubic trailer">
-          <img src="{{ url('/assets/images/trailer-poster.jpg') }}" alt="Cubic - official trailer, gameplay preview frame" loading="lazy" width="1280" height="720">
-          <div class="play-btn"><span>{{ icon.play() }}</span></div> 
-        </div>
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/{{ trailer_youtube_id }}"
+          title="Cubic - Official Trailer"
+          loading="lazy"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+          width="1280" height="720"></iframe>
       </div>
     </div>
+
+    <div class="demo-cta">
+      <a class="wishlist-btn play-demo-btn" href="{{ links.steam }}" target="_blank" rel="noopener">
+        {{ icon.steam() }} <span data-i18n="demo_cta_button">PLAY DEMO!</span>
+      </a>
+    </div>
   </div>
 </section>
 
-<section class="section" aria-label="Game features">
+<section class="section frontbar frontbar-desert" aria-label="Game features">
   <div class="feature-row">
     <div class="feature-media">
         <!--<video  autoplay muted loop playsinline disablepictureinpicture controlslist='nodownload noplaybackrate nofullscreen' 
@@ -89,7 +89,7 @@ Choose your own path and engage at your own pace.</p>
 </section>
 -->
 
-<section class="section" aria-label="Latest news">
+<section class="section frontbar frontbar-crystal" aria-label="Latest news and newsletter">
   <div class="section-head">
     <h2 data-i18n="news_title">Latest news</h2>
     <a class="view-all" href="{{ url('/news/') }}" data-i18n="view_all">View all</a>
@@ -108,18 +108,18 @@ Choose your own path and engage at your own pace.</p>
     </article>
     {% endfor %}
   </div>
-</section>
 
-<section class="subscribe" aria-label="Newsletter signup">
-  <h2 data-i18n="subscribe_title">Subscribe to our newsletter</h2>
-  <p data-i18n="subscribe_body">Devlogs, patch notes and occasional turtle. No spam, unsubscribe any time.</p>
-  <form class="subscribe-form" action="{{ newsletter_endpoint }}" method="post">
-    <label class="sr-only" for="email">Email address</label>
-    <input type="email" id="email" name="email" required data-i18n-placeholder="subscribe_placeholder" placeholder="you@example.com">
-    <button type="submit" data-i18n="subscribe_button">Subscribe</button>
-  </form>
-  <p class="subscribe-success" role="status" data-i18n="subscribe_success">Thanks - check your inbox to confirm.</p>
-  <p class="subscribe-note">We only use this to send Twin Turtle Games updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
+  <div class="subscribe" aria-label="Newsletter signup">
+    <h2 data-i18n="subscribe_title">Subscribe to our newsletter</h2>
+    <p data-i18n="subscribe_body">Devlogs, patch notes and occasional turtle. No spam, unsubscribe any time.</p>
+    <form class="subscribe-form" action="{{ newsletter_endpoint }}" method="post">
+      <label class="sr-only" for="email">Email address</label>
+      <input type="email" id="email" name="email" required data-i18n-placeholder="subscribe_placeholder" placeholder="you@example.com">
+      <button type="submit" data-i18n="subscribe_button">Subscribe</button>
+    </form>
+    <p class="subscribe-success" role="status" data-i18n="subscribe_success">Thanks - check your inbox to confirm.</p>
+    <p class="subscribe-note">We only use this to send Twin Turtle Games updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
+  </div>
 </section>
 
 {% endblock %}
