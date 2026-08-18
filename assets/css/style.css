@@ -331,7 +331,7 @@ footer.site-footer{
 @media (max-width:600px){ .news-index-grid{ grid-template-columns:1fr; } }
 
 /* Single post */
-.post-hero-img{ max-width:900px; margin:0 auto; border:1px solid var(--line); }
+.post-hero-img{ max-width:800px; margin:0 auto; border:1px solid var(--line); }
 .post-content{
   max-width:720px; margin:40px auto 90px; padding:0 24px; color:var(--text-primary);
   font-size:1.05rem;

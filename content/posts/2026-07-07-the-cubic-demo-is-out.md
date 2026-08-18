@@ -3,7 +3,7 @@ title: "Devlog 1: The Cubic Demo is out!"
 date: 2026-07-07
 author: "Victor"
 excerpt: "This game has been in development for a long time, but we are finally approaching the finish line, and ready to show it off to the public."
-cover: /assets/images/screenshots/keyart1.png
+cover: /assets/images/screenshots/News_2.png
 ---
 
 ## Hello!
