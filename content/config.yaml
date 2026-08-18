@@ -41,4 +41,4 @@ screenshot_captions:
 
 # Newsletter form endpoint - point this at your provider
 # (Buttondown / Mailchimp / ConvertKit / etc). Left blank = local demo only.
-newsletter_endpoint: ""
+newsletter_endpoint: "https://cc0c2129.sibforms.com/serve/MUIFAEcO8h2HmJXXdCRBaLQJjQJXTGFnW6Bsc1OFfbwmhrkviyozi_KUpkkpRtOnJukfJK3jJAZhSJzC0lsTZ7Svfy8uylxr8Q0-YjH-eSUaJVdaPbDKw16k1e0pq5L75OM8aG07cBErSkK2L8Ym54u_qMYkZQ4NktqZefx6V9bj_RYk8jJaEVbfSADNkN4JBSrymBA9Lm7sjURrXA=="
