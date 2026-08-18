@@ -18,20 +18,18 @@
   </article>
   {% endfor %}
 
-</div>
-<section class="page-hero-bottom">
   <div class="subscribe" aria-label="Newsletter signup">
     <h2>Subscribe to our newsletter</h2>
     <p>Devlogs, patch notes and occasional turtle. No spam, unsubscribe any time.</p>
-    <form class="subscribe-form" action="{{ newsletter_endpoint }}" method="post">
+    <form class="subscribe-form" action="{{ newsletter_endpoint }}" method="post" target="brevo-submit">
       <label class="sr-only" for="email">Email address</label>
-      <input type="email" id="EMAIL" name="EMAIL" required placeholder="you@example.com">
-      <input type="text" name="email_address_check" value="" class="input--hidden">
+      <input type="email" id="email" name="EMAIL" required placeholder="you@example.com">
       <input type="hidden" name="locale" value="en">
       <input type="hidden" name="html_type" value="simple">
       <button type="submit">Subscribe</button>
     </form>
-    <p class="subscribe-success" role="status">Thanks - check your inbox to confirm.</p>
+    <iframe name="brevo-submit" id="brevo-submit" style="display:none;" title="Newsletter submission"></iframe>
+    <p class="subscribe-success" role="status">Thanks - check your inbox or spam folder to confirm.</p>
     <p class="subscribe-note">We only use this to send Twin Turtle Games updates. See our <a href="{{ url('/privacy.html') }}">Privacy Policy</a>.</p>
   </div>
 </section>

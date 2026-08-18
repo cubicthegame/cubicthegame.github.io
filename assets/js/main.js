@@ -28,14 +28,13 @@ if (track){
   nextBtn?.addEventListener('click', ()=> track.scrollBy({left:scrollAmount(), behavior:'smooth'}));
 }
 
-// ===== Subscribe form (static hosting: hook up to your provider, e.g. Mailchimp/Buttondown) =====
 const subForm = document.querySelector('.subscribe-form');
-if (subForm){
-  subForm.addEventListener('submit', (e)=>{
-    e.preventDefault();
+if (subForm) {
+  subForm.addEventListener('submit', () => {
     const success = document.querySelector('.subscribe-success');
-    // TODO: wire this up to a real newsletter provider endpoint.
-    if (success) success.style.display = 'block';
-    subForm.reset();
+
+    if (success) {
+      success.style.display = 'block';
+    }
   });
 }
