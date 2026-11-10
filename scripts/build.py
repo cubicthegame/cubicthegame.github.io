@@ -35,6 +35,7 @@ import re
 from pathlib import Path
 from datetime import datetime, date
 import json
+import hashlib
 import subprocess
 from functools import lru_cache
 from urllib.parse import quote
@@ -261,6 +262,17 @@ def main():
     source_lastmod.cache_clear()
     media = Media(ASSETS, DIST / "assets")
 
+    @lru_cache(maxsize=None)
+    def versioned_asset(path):
+        """Change the URL with the content so cached CSS/JS matches the HTML."""
+        source = ROOT / path.lstrip("/")
+        digest = hashlib.sha256(source.read_bytes()).hexdigest()[:12]
+        relative = source.relative_to(ROOT).with_name(f"{source.stem}-{digest}{source.suffix}")
+        target = DIST / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+        return "/" + quote(relative.as_posix())
+
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES)),
         autoescape=select_autoescape(disabled_extensions=("txt",)),
@@ -268,6 +280,7 @@ def main():
         lstrip_blocks=True,
     )
     env.globals["image"] = media.image
+    env.globals["asset"] = versioned_asset
 
     common = dict(
         site_url=cfg["site_url"],

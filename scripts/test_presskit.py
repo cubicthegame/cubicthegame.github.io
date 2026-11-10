@@ -148,6 +148,15 @@ class PresskitTests(unittest.TestCase):
                 self.assertEqual(hashlib.sha256(source.read_bytes()).digest(),
                                  hashlib.sha256(copied.read_bytes()).digest(), source)
 
+    def test_stylesheet_and_script_urls_change_with_their_contents(self):
+        html = (DIST / "presskit.html").read_text(encoding="utf-8")
+        for relative in ("css/style.css", "js/main.js"):
+            source = ASSETS / relative
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()[:12]
+            filename = source.with_name(f"{source.stem}-{digest}{source.suffix}").relative_to(ASSETS)
+            self.assertIn("/assets/" + filename.as_posix(), html)
+            self.assertEqual((DIST / "assets" / filename).read_bytes(), source.read_bytes())
+
     def test_press_previews_use_small_images_and_keep_downloads(self):
         parser = Links()
         html = (DIST / "presskit.html").read_text(encoding="utf-8")

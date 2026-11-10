@@ -40,7 +40,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url('/assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ url(asset('/assets/css/style.css')) }}">
 
 {% if schema %}
 <script type="application/ld+json">{{ schema | safe }}</script>
@@ -114,7 +114,7 @@
   </div>
 </footer>
 
-<script src="{{ url('/assets/js/main.js') }}" defer></script>
+<script src="{{ url(asset('/assets/js/main.js')) }}" defer></script>
 {% block extra_scripts %}{% endblock %}
 </body>
 </html>
