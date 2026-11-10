@@ -440,6 +440,7 @@ footer.site-footer{
    Responsive
    ========================================================= */
 @media (max-width:980px){
+  .frontbar-crystal{ background-size:cover; background-repeat:no-repeat; }
   .feature-row{ grid-template-columns:1fr; gap:26px; padding:36px 24px; }
   .feature-row.reverse .feature-media, .feature-row.reverse .feature-copy{ order:initial; }
   .news-grid, .news-index-grid{ grid-template-columns:1fr 1fr; }
