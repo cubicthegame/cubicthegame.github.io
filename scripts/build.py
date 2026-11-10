@@ -273,6 +273,8 @@ def main():
     presskit_sections = list_presskit()
 
     if DIST.exists():
+        if DIST.resolve() != ROOT / "dist":
+            raise ValueError("Build output must resolve to the workspace dist directory")
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
     source_lastmod.cache_clear()

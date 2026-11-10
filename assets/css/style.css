@@ -342,6 +342,7 @@ footer.site-footer{
 
 /* Single post */
 .post-hero-img{ max-width:800px; margin:0 auto; border:1px solid var(--line); }
+.post-hero-img img{ width:100%; height:auto; }
 .post-layout{ max-width:var(--container); margin:40px auto 90px; }
 .post-content{
   width:100%; min-width:0; max-width:720px; margin:0 auto; padding:0 24px; color:var(--text-primary);

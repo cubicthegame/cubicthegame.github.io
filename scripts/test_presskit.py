@@ -18,6 +18,12 @@ from media import Media
 from build import ASSETS, DIST, list_presskit, load_posts, main, make_url, render_post_body, source_lastmod
 
 
+def setUpModule():
+    # Every integration check must work on a fresh CI checkout, regardless of
+    # which test class unittest runs first.
+    main()
+
+
 class Links(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -45,10 +51,6 @@ class Links(HTMLParser):
 
 
 class PresskitTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        main()
-
     def test_discover_added_items_and_optional_formats(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
