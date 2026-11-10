@@ -9,7 +9,6 @@
 {% for section in presskit_sections %}
 <section class="presskit-section" id="{{ section.id }}">
   <h2>{{ section.title }}</h2>
-  <p>Choose an image below and download it in any of the available formats.</p>
   <div class="keyart-list">
     {% for art in section['items'] %}
     <article class="keyart-card">
