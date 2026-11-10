@@ -24,9 +24,8 @@ their image data and dimensions are unchanged.
 
 All discovered images are included in the press kit's image sitemap entry.
 Illustrator and other source files are linked as downloads, not image entries.
-Screenshots continue to come from `assets/images/screenshots/` and are also
-included in the page and sitemap. Screenshot captions can be set in
-`content/config.yaml`.
+The press kit has no separate Screenshots section. Files in
+`assets/images/screenshots/` remain available to other pages.
 
 Run `python scripts/build.py` to preview changes in `dist/presskit.html`.
 Push changes to `main` for the existing GitHub Pages workflow to rebuild and

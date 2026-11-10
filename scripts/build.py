@@ -303,18 +303,16 @@ def main():
         url=make_url(""),
         path="/presskit.html",
         title=f"Press Kit - {cfg['site_name']}",
-        description=f"Key art, screenshots, and facts about {cfg['site_name']} for press and content creators.",
+        description=f"Official {cfg['site_name']} key art, logos, and downloads for press and content creators.",
         og_type="website",
         og_image=cfg["default_og_image"],
         presskit_sections=presskit_sections,
-        screenshots=screenshots,
     )
     (DIST / "presskit.html").write_text(html, encoding="utf-8")
     presskit_images = (
         [(abs_url(image), item["caption"])
          for section in presskit_sections for item in section["items"]
          for image in item["images"]]
-        + [(abs_url(s["path"]), s["caption"]) for s in screenshots]
     )
     pages.append(("/presskit.html", 0.6, "monthly", presskit_images))
 
