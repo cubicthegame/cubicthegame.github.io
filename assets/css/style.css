@@ -90,7 +90,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .nav-left a.nav-link:hover{ color:var(--text-primary); }
 .mobile-nav{ display:none; position:relative; }
-.mobile-nav summary{ cursor:pointer; padding:8px 0; font-family:var(--font-mono); font-size:.8rem; }
+.mobile-nav summary{
+  display:flex; align-items:center; justify-content:center; width:44px; height:44px;
+  cursor:pointer; list-style:none; color:var(--text-muted);
+}
+.mobile-nav summary::-webkit-details-marker{ display:none; }
+.menu-bars{ display:flex; flex-direction:column; gap:5px; width:22px; }
+.menu-bars span{ display:block; height:2px; width:100%; background:currentColor; border-radius:1px; }
+.mobile-nav summary:hover{ color:var(--text-primary); }
 .mobile-nav-links{
   position:absolute; top:calc(100% + 12px); left:0; min-width:160px;
   background:var(--bg-surface); border:1px solid var(--line-strong); padding:8px;

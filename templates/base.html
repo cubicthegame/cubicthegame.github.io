@@ -59,7 +59,9 @@
       <a class="nav-link" href="{{ url('/news/') }}">News</a>
       <a class="nav-link" href="{{ url('/presskit.html') }}">Press Kit</a>
       <details class="mobile-nav">
-        <summary>Menu</summary>
+        <summary aria-label="Menu">
+          <span class="menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </summary>
         <nav class="mobile-nav-links" aria-label="Mobile navigation">
           <a href="{{ url('/news/') }}">News</a>
           <a href="{{ url('/presskit.html') }}">Press Kit</a>
