@@ -2,7 +2,7 @@
 {% block content %}
 <section class="page-hero">
   <h1>{{ page_title }}</h1>
-  <p>Last updated {{ updated }}</p>
+  {% if updated %}<p>Last updated {{ updated }}</p>{% endif %}
 </section>
 <div class="legal-content">
   {{ body | safe }}

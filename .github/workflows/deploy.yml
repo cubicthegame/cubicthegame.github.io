@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,8 +31,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Build site
-        run: python3 scripts/build.py
+      - name: Set up Node for script checks
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate navigation and video loading
+        run: node --test scripts/test_main.cjs
+
+      - name: Build and validate site
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

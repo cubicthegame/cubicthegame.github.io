@@ -32,8 +32,8 @@ trailer_upload_date: "2026-06-27"
 default_og_image: "/assets/images/screenshots/keyart1.png"
 
 # Descriptive alt text / SEO captions for each screenshot, keyed by filename.
-# Shown as the image's alt text (carousel + press kit) and as the <image:caption>
-# in sitemap.xml. Any screenshot file not listed here falls back to a generic
+# Used as the image's alt text when screenshots are displayed. Image sitemap
+# entries contain URLs only. Any screenshot not listed here falls back to a generic
 # "Cubic - screenshot" caption, so this is safe to leave partially filled in.
 screenshot_captions:
   keyart1.png: "Cubic keyart - the land of Cubic with logo and the man made of cubes."

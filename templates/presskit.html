@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "_media.html" as media with context %}
 {% block content %}
 <section class="page-hero">
   <h1>Press Kit</h1>
@@ -13,7 +14,7 @@
     {% for art in section['items'] %}
     <article class="keyart-card">
       <a class="keyart-image" href="{{ url(art.preview) }}" aria-label="View {{ art.title }}">
-        <img src="{{ url(art.preview) }}" alt="{{ art.caption }}" loading="lazy">
+        {{ media.image_tag(art.preview, art.caption, '260px', widths=(260, 520)) }}
       </a>
       <div class="keyart-downloads">
         <h3>{{ art.title }}</h3>

@@ -1,0 +1,7 @@
+{% macro image_tag(path, alt, sizes, widths=(480, 800, 1280), loading='lazy', class_name='', priority=false) -%}
+{% set media = image(path, widths) %}
+<img src="{{ url(media.src) }}" alt="{{ alt }}"
+  {% if media.candidates %}srcset="{% for candidate in media.candidates %}{{ url(candidate.path) }} {{ candidate.width }}w{{ ', ' if not loop.last }}{% endfor %}" sizes="{{ sizes }}"{% endif %}
+  {% if media.width %}width="{{ media.width }}" height="{{ media.height }}"{% endif %}
+  loading="{{ loading }}" decoding="async"{% if class_name %} class="{{ class_name }}"{% endif %}{% if priority %} fetchpriority="high"{% endif %}>
+{%- endmacro %}

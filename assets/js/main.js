@@ -18,6 +18,51 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, { passive:true });
 onScroll();
 
+// Native details keeps navigation usable even without JavaScript.
+const mobileNav = document.querySelector('.mobile-nav');
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && mobileNav?.open) {
+    mobileNav.open = false;
+    mobileNav.querySelector('summary').focus();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (mobileNav?.open && !mobileNav.contains(event.target)) mobileNav.open = false;
+});
+
+// Keep original videos intact; fetch and play loops only near the viewport.
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const loopVisibility = new Map();
+function updateLoop(video, visible) {
+  loopVisibility.set(video, visible);
+  if (!visible || reducedMotion.matches || navigator.connection?.saveData || document.hidden) {
+    video.pause();
+    return;
+  }
+  if (!video.dataset.loaded) {
+    video.querySelectorAll('source[data-src]').forEach((source) => {
+      source.src = source.dataset.src;
+    });
+    video.dataset.loaded = 'true';
+    video.load();
+  }
+  video.play().catch(() => {}); // The poster remains if autoplay is unavailable.
+}
+const loops = document.querySelectorAll('.lazy-video');
+if ('IntersectionObserver' in window) {
+  const loopObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => updateLoop(entry.target, entry.isIntersecting));
+  }, { rootMargin: '150px', threshold: 0.01 });
+  loops.forEach((video) => loopObserver.observe(video));
+} else {
+  loops.forEach((video) => updateLoop(video, true));
+}
+function refreshLoops() {
+  loopVisibility.forEach((visible, video) => updateLoop(video, visible));
+}
+reducedMotion.addEventListener('change', refreshLoops);
+document.addEventListener('visibilitychange', refreshLoops);
+
 // ===== Screenshot carousel =====
 const track = document.querySelector('.carousel-track');
 if (track){

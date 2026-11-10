@@ -15,7 +15,11 @@ assets/presskit/key-art/new-art/
 ```
 
 Each item needs at least one PNG, JPG, JPEG, WebP, or SVG for its preview.
-The smallest raster image is used for the preview, falling back to SVG.
+The smallest raster image supplies the preview, falling back to SVG.
+Each build generates smaller lossless WebP previews at 260px and 520px wide
+under `dist/assets/generated/`. Transparency is preserved, images are never
+upscaled, and original downloads are copied without modification. Generated
+files do not need to be committed or added to the download folders.
 Only files that exist get download buttons. PDF, EPS, PSD, and ZIP downloads
 are also supported. Name scaled exports with `-1x`, `-2x`, etc. (or `@1x`,
 `@2x`) immediately before the extension to show the scale on the button.
@@ -27,7 +31,15 @@ Illustrator and other source files are linked as downloads, not image entries.
 The press kit has no separate Screenshots section. Files in
 `assets/images/screenshots/` remain available to other pages.
 
-Run `python scripts/build.py` to preview changes in `dist/presskit.html`.
+Run `python scripts/build.py`, then `python -m http.server --directory dist`
+and visit `http://localhost:8000/presskit.html` to preview changes. Page links
+use canonical directory URLs and need an HTTP server rather than file browsing.
 Push changes to `main` for the existing GitHub Pages workflow to rebuild and
 deploy the page, assets, sitemap.xml, and robots.txt. GitHub Pages cannot scan
 folders at runtime; discovery happens on every build.
+
+The sitemap uses Git history for modification dates. Deployments fetch the
+full history so an unchanged page keeps its date across rebuilds. A local
+uncommitted change uses today's date; an exported checkout without Git history
+omits dates it cannot establish. Deprecated image captions, priority, and change
+frequency tags are not emitted.

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 {% import "_icons.html" as icon %}
+{% set sharing_image = image(og_image|default('/assets/images/screenshots/keyart1.png'), (1280,), social=true) %}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ title }}</title>
@@ -14,9 +15,11 @@
 <meta property="og:title" content="{{ og_title|default(title) }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ site_url }}{{ path }}">
-<meta property="og:image" content="{{ site_url }}{{ og_image|default('/assets/images/screenshots/keyart1.png') }}">
-<meta property="og:image:width" content="1280">
-<meta property="og:image:height" content="720">
+<meta property="og:image" content="{{ sharing_image.src if sharing_image.src.startswith(('https://', 'http://', '//')) else site_url + sharing_image.src }}">
+{% if sharing_image.width %}
+<meta property="og:image:width" content="{{ sharing_image.width }}">
+<meta property="og:image:height" content="{{ sharing_image.height }}">
+{% endif %}
 {% if og_video %}
 <meta property="og:video" content="{{ og_video }}">
 {% endif %}
@@ -25,7 +28,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title|default(title) }}">
 <meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ site_url }}{{ og_image|default('/assets/images/screenshots/keyart1.png') }}">
+<meta name="twitter:image" content="{{ sharing_image.src if sharing_image.src.startswith(('https://', 'http://', '//')) else site_url + sharing_image.src }}">
 
 <!-- Favicons -->
 <link rel="icon" href="{{ url('/assets/images/favicon-32.png') }}" sizes="32x32" type="image/png">
@@ -36,7 +39,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url('/assets/css/style.css') }}">
 
 {% if schema %}
@@ -55,6 +58,13 @@
       </a>
       <a class="nav-link" href="{{ url('/news/') }}">News</a>
       <a class="nav-link" href="{{ url('/presskit.html') }}">Press Kit</a>
+      <details class="mobile-nav">
+        <summary>Menu</summary>
+        <nav class="mobile-nav-links" aria-label="Mobile navigation">
+          <a href="{{ url('/news/') }}">News</a>
+          <a href="{{ url('/presskit.html') }}">Press Kit</a>
+        </nav>
+      </details>
     </div>
 
     <div class="nav-center">
@@ -71,7 +81,7 @@
         <a href="{{ links.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon.instagram() }}</a>
       </nav>
 
-        <a class="steam-pill" href="{{ links.steam }}" target="_blank" rel="noopener">
+        <a class="steam-pill" href="{{ links.steam }}" target="_blank" rel="noopener" aria-label="Wishlist Cubic on Steam">
         <span class="wl-text">WISHLIST NOW</span>
         {{ icon.steam() }}
       </a>

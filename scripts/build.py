@@ -8,7 +8,7 @@ What it does:
      turns each into a news post page at /news/<slug>/index.html, and
      builds the /news/ index page + the "latest 3" list used on the homepage.
   3. Renders index.html, presskit.html, terms.html, privacy.html.
-  4. Copies assets/ as-is into the output.
+  4. Generates responsive display images and copies original assets unchanged.
   5. Generates sitemap.xml and robots.txt.
 
 Run it with:  python3 scripts/build.py
@@ -35,11 +35,14 @@ import re
 from pathlib import Path
 from datetime import datetime, date
 import json
+import subprocess
+from functools import lru_cache
 from urllib.parse import quote
 
 import yaml
 import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from media import Media
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
@@ -69,28 +72,35 @@ def format_date(d) -> str:
 
 
 def make_url(base: str):
-    """
-    Build a `url(path)` function for templates. `path` is written as a clean,
-    root-relative site path (e.g. "/assets/css/style.css", "/news/", "/").
-    `base` is either:
-      - a relative prefix like "", "../", "../../"  (depends on how deep the
-        current output page sits), which makes every link/asset work both
-        when served by a real web server *and* when a file is opened directly
-        via file:// (double-click) - no root-absolute paths anywhere, or
-      - an absolute URL prefix (site_url + "/"), used only for 404.html, which
-        GitHub Pages can serve from any depth so it can't rely on a relative
-        prefix.
-    Directory-style paths ("/", "/news/", "/news/slug/") resolve to their
-    index.html so plain file:// browsing works without a server.
+    """Use canonical root-relative URLs; the 404 page uses an absolute prefix.
+
+    Preview dist with an HTTP server rather than opening HTML via file://.
     """
     def _url(path: str) -> str:
-        if path.startswith(("http://", "https://", "mailto:")) or path == "#":
+        if path.startswith(("http://", "https://", "mailto:", "#", "//")):
             return path
-        p = path.lstrip("/")
-        if path.endswith("/") or p == "":
-            p = p + "index.html"
-        return base + p
+        if base.startswith(("http://", "https://")):
+            return base.rstrip("/") + "/" + path.lstrip("/")
+        return "/" + path.lstrip("/")
     return _url
+
+
+@lru_cache(maxsize=None)
+def source_lastmod(*paths):
+    """Use source history, not checkout mtimes or the date of every rebuild."""
+    command = ["git", "-c", f"safe.directory={ROOT.as_posix()}"]
+    try:
+        changed = subprocess.run(command + ["status", "--porcelain", "--", *paths],
+                                 cwd=ROOT, check=True, capture_output=True, text=True)
+        if changed.stdout.strip():
+            return date.today().isoformat()
+        history = subprocess.run(command + ["log", "-1", "--format=%cs", "--", *paths],
+                                 cwd=ROOT, check=True, capture_output=True, text=True)
+        value = history.stdout.strip()
+        return value if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value) else None
+    except (OSError, subprocess.CalledProcessError):
+        # An exported checkout may have no Git history. Omit an unknown date.
+        return None
 
 
 def slugify(name: str) -> str:
@@ -129,6 +139,7 @@ def load_posts():
             "slug": slug,
             "url": f"/news/{slug}/",
             "html": html,
+            "source": md_file.relative_to(ROOT).as_posix(),
         })
     posts.sort(key=lambda p: p["date"], reverse=True)
     return posts
@@ -247,6 +258,8 @@ def main():
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
+    source_lastmod.cache_clear()
+    media = Media(ASSETS, DIST / "assets")
 
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES)),
@@ -254,6 +267,7 @@ def main():
         trim_blocks=True,
         lstrip_blocks=True,
     )
+    env.globals["image"] = media.image
 
     common = dict(
         site_url=cfg["site_url"],
@@ -269,7 +283,12 @@ def main():
     def abs_url(path):
         return f"{cfg['site_url']}{path}"
 
-    pages = []  # for sitemap: (path, priority, changefreq, images)
+    pages = []  # for sitemap: (canonical path, source modification date, images)
+
+    def lastmod(*paths):
+        return source_lastmod("templates/base.html", "templates/_media.html",
+                              "scripts/build.py", "scripts/media.py", "content/config.yaml",
+                              "assets/css/style.css", "assets/js/main.js", *paths)
 
     # ---- Homepage ----
     html = env.get_template("index.html").render(
@@ -292,10 +311,9 @@ def main():
          (abs_url("/assets/images/bg/blackbar_intro_big.png"), f"{cfg['site_name']} - intro background"),
          (abs_url("/assets/images/bg/blackbar_desert_big.png"), f"{cfg['site_name']} - desert background"),
          (abs_url("/assets/images/bg/blackbar_crystal_big.png"), f"{cfg['site_name']} - crystal background")]
-        + [(abs_url(s["path"]), s["caption"]) for s in screenshots]
         + [(abs_url(p["cover"]), p["title"]) for p in posts[:3]]
     )
-    pages.append(("/", 1.0, "weekly", home_images))
+    pages.append(("/", lastmod("templates/index.html", "content/posts", "assets/images", "assets/webm"), home_images))
 
     # ---- Press kit ----
     html = env.get_template("presskit.html").render(
@@ -314,10 +332,11 @@ def main():
          for section in presskit_sections for item in section["items"]
          for image in item["images"]]
     )
-    pages.append(("/presskit.html", 0.6, "monthly", presskit_images))
+    pages.append(("/presskit.html", lastmod("templates/presskit.html", "assets/presskit", cfg["default_og_image"].lstrip("/")), presskit_images))
 
     # ---- Legal ----
     for name, title in [("terms", "Terms of Service"), ("privacy", "Privacy Policy")]:
+        legal_date = source_lastmod(f"content/legal/{name}.md")
         html = env.get_template("legal.html").render(
             **common,
             url=make_url(""),
@@ -325,11 +344,11 @@ def main():
             title=f"{title} - {cfg['site_name']}",
             description=f"{title} for {cfg['site_name']}, by {cfg['studio_name']}.",
             page_title=title,
-            updated=format_date(date.today()),
+            updated=format_date(date.fromisoformat(legal_date)) if legal_date else None,
             body=load_legal(name),
         )
         (DIST / f"{name}.html").write_text(html, encoding="utf-8")
-        pages.append((f"/{name}.html", 0.2, "yearly", []))
+        pages.append((f"/{name}.html", lastmod("templates/legal.html", f"content/legal/{name}.md"), []))
 
     # ---- News index ----
     (DIST / "news").mkdir(parents=True, exist_ok=True)
@@ -344,7 +363,7 @@ def main():
     )
     (DIST / "news" / "index.html").write_text(html, encoding="utf-8")
     news_images = [(abs_url(p["cover"]), p["title"]) for p in posts]
-    pages.append(("/news/", 0.8, "weekly", news_images))
+    pages.append(("/news/", lastmod("templates/news_index.html", "content/posts", "assets/images/screenshots"), news_images))
 
     # ---- Individual posts ----
     for post in posts:
@@ -362,24 +381,24 @@ def main():
             post=post,
         )
         (post_dir / "index.html").write_text(html, encoding="utf-8")
-        pages.append((post["url"], 0.5, "monthly", [(abs_url(post["cover"]), post["title"])]))
+        pages.append((post["url"], lastmod("templates/post.html", post["source"], post["cover"].lstrip("/")),
+                      [(abs_url(post["cover"]), post["title"])]))
 
     # ---- Copy static assets ----
-    shutil.copytree(ASSETS, DIST / "assets")
+    shutil.copytree(ASSETS, DIST / "assets", dirs_exist_ok=True)
 
     # ---- sitemap.xml (with the Google image-sitemap extension) ----
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
              '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
-    for path, priority, changefreq, images in pages:
+    for path, modified, images in pages:
         lines.append("  <url>")
         lines.append(f"    <loc>{xml_escape(cfg['site_url'] + path)}</loc>")
-        lines.append(f"    <changefreq>{changefreq}</changefreq>")
-        lines.append(f"    <priority>{priority}</priority>")
-        for img_loc, img_caption in images:
+        if modified:
+            lines.append(f"    <lastmod>{modified}</lastmod>")
+        for img_loc in dict.fromkeys(location for location, caption in images):
             lines.append("    <image:image>")
             lines.append(f"      <image:loc>{xml_escape(img_loc)}</image:loc>")
-            lines.append(f"      <image:caption>{xml_escape(img_caption)}</image:caption>")
             lines.append("    </image:image>")
         lines.append("  </url>")
     lines.append("</urlset>")

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% import "_icons.html" as icon %}
+{% import "_media.html" as media with context %}
 {% block content %}
 
 <section class="section frontbar frontbar-intro" aria-label="Trailer">
   <div class="container intro-inner">
-    <img class="hero-logo" src="{{ url('/assets/images/logo-color-placeholder.png') }}" alt="Cubic - logo" width="560" height="127">
+    {{ media.image_tag('/assets/images/logo-color-placeholder.png', 'Cubic - logo', '(max-width: 520px) 62vw, (max-width: 685px) 70vw, 480px', widths=(480, 960), loading='eager', class_name='hero-logo', priority=true) }}
     <p class="hero-tag">Explore a mysterious post-human world. Solve puzzles by combining and rearranging cubes. Find your other half.</p>
 
     <div class="video-wrap" id="trailer">
@@ -31,17 +32,11 @@
 <section class="section frontbar frontbar-crystal" aria-label="Game features">
   <div class="feature-row">
     <div class="feature-media">
-        <!--<video  autoplay muted loop playsinline disablepictureinpicture controlslist='nodownload noplaybackrate nofullscreen' 
-            style='pointer-events:none;' width="540" height="360">
-            <source src="{{ url('/assets/images/videos/Webpage_Overworld_alt.mp4') }}" type='video/mp4' alt="Cubic gameplay - exploring an isometric land">
-        </video>-->
-        <video  autoplay muted loop playsinline disablepictureinpicture controlslist='nodownload noplaybackrate nofullscreen' 
-            style='pointer-events:none;' width="540" height="360">
-            <source src="{{ url('/assets/webm/Webpage_Overworld_alt.webm') }}" type='video/webm' alt="Cubic gameplay - exploring an isometric land">
-        </video>
-
-        <!--<img src="{{ url('/assets/webm/Webpage_Overworld_alt.webm') }}" alt="Cubic gameplay - exploring an isometric land" width="640" height="360">-->
-        <!--<img src="{{ url('/assets/images/videos/gameplay-1.gif') }}" alt="Cubic gameplay - exploring an isometric land" loading="lazy" width="640" height="360">-->
+      <video class="lazy-video" autoplay muted loop playsinline preload="none" disablepictureinpicture
+        poster="{{ url('/assets/images/video-posters/overworld.webp') }}"
+        aria-label="Cubic gameplay - exploring an isometric land" width="540" height="360">
+        <source data-src="{{ url('/assets/webm/Webpage_Overworld_alt.webm') }}" type="video/webm">
+      </video>
     </div>
     <div class="feature-copy">
       <span class="eyebrow">Exploration</span>
@@ -54,11 +49,11 @@ Uncover the secrets and treasures of humanity's final descendants.</p>
 
   <div class="feature-row reverse">
     <div class="feature-media">
-      <video autoplay muted loop playsinline disablepictureinpicture controlslist='nodownload noplaybackrate nofullscreen' 
-            style='pointer-events:none;' width="540" height="360">
-            <source src="{{ url('/assets/webm/Webpage_Puzzle.webm') }}" type='video/webm' alt="Cubic gameplay - solving a puzzle">
-        </video>
-        <!-- <img src="{{ url('/assets/images/videos/Webpage_Puzzle.mp4') }}" alt="Cubic gameplay - solving a puzzle" loading="lazy" width="640" height="360"> -->
+      <video class="lazy-video" autoplay muted loop playsinline preload="none" disablepictureinpicture
+        poster="{{ url('/assets/images/video-posters/puzzle.webp') }}"
+        aria-label="Cubic gameplay - solving a puzzle" width="540" height="360">
+        <source data-src="{{ url('/assets/webm/Webpage_Puzzle.webm') }}" type="video/webm">
+      </video>
     </div>
     <div class="feature-copy">
       <span class="eyebrow">Puzzles</span>
@@ -98,7 +93,7 @@ Choose your own path and engage at your own pace.</p>
     {% for post in latest_posts %}
     <article class="post-card">
       <a href="{{ url(post.url) }}" class="thumb">
-        <img src="{{ url(post.cover) }}" alt="{{ post.title }}" loading="lazy" width="640" height="400">
+        {{ media.image_tag(post.cover, post.title, '(max-width: 760px) calc(100vw - 48px), (max-width: 980px) 45vw, 360px') }}
         <div class="overlay">
           <time datetime="{{ post.date_iso }}">{{ post.date_display }}</time>
           <h3>{{ post.title }}</h3>
