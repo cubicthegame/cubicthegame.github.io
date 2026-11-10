@@ -38,6 +38,7 @@ import json
 import hashlib
 import subprocess
 from functools import lru_cache
+from html import unescape
 from urllib.parse import quote
 
 import yaml
@@ -111,6 +112,20 @@ def slugify(name: str) -> str:
     return name
 
 
+def render_post_body(body_md):
+    converter = markdown.Markdown(
+        extensions=["extra", "smarty", "toc"],
+        extension_configs={"toc": {"toc_depth": "2-3", "marker": ""}},
+    )
+    html = converter.convert(body_md)
+
+    def entries(tokens):
+        return [{"id": token["id"], "label": unescape(token["name"]),
+                 "children": entries(token["children"])} for token in tokens]
+
+    return html, entries(converter.toc_tokens)
+
+
 def load_posts():
     posts = []
     for md_file in sorted(CONTENT.glob("posts/*.md")):
@@ -120,7 +135,7 @@ def load_posts():
             raise ValueError(f"{md_file} is missing YAML frontmatter (--- ... ---)")
         meta = yaml.safe_load(fm_match.group(1))
         body_md = fm_match.group(2).strip()
-        html = markdown.markdown(body_md, extensions=["extra", "smarty"])
+        html, toc = render_post_body(body_md)
 
         d = meta["date"]
         if isinstance(d, str):
@@ -140,6 +155,7 @@ def load_posts():
             "slug": slug,
             "url": f"/news/{slug}/",
             "html": html,
+            "toc": toc,
             "source": md_file.relative_to(ROOT).as_posix(),
         })
     posts.sort(key=lambda p: p["date"], reverse=True)

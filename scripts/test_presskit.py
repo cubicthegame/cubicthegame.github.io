@@ -15,7 +15,7 @@ from PIL import Image, ImageChops
 import build
 from media import Media
 
-from build import ASSETS, DIST, list_presskit, main, make_url, source_lastmod
+from build import ASSETS, DIST, list_presskit, load_posts, main, make_url, render_post_body, source_lastmod
 
 
 class Links(HTMLParser):
@@ -156,6 +156,32 @@ class PresskitTests(unittest.TestCase):
             filename = source.with_name(f"{source.stem}-{digest}{source.suffix}").relative_to(ASSETS)
             self.assertIn("/assets/" + filename.as_posix(), html)
             self.assertEqual((DIST / "assets" / filename).read_bytes(), source.read_bytes())
+
+    def test_article_contents_link_to_real_heading_anchors(self):
+        for post in load_posts():
+            page = (DIST / post["url"].lstrip("/") / "index.html").read_text(encoding="utf-8")
+            def check(entries):
+                for entry in entries:
+                    self.assertIn(f'href="#{entry["id"]}"', page)
+                    self.assertIn(f'id="{entry["id"]}"', post["html"])
+                    check(entry["children"])
+            check(post["toc"])
+            self.assertEqual('class="post-toc"' in page, bool(post["toc"]))
+
+
+class ContentsTests(unittest.TestCase):
+    def test_formatted_nested_and_duplicate_headings(self):
+        html, toc = render_post_body("## Hello & *welcome*\n\n### More\n\n## Hello & *welcome*\n\n```\n## Not a heading\n```")
+        self.assertEqual(len(toc), 2)
+        self.assertEqual(toc[0]["label"], "Hello & welcome")
+        self.assertEqual(toc[0]["children"][0]["label"], "More")
+        self.assertNotEqual(toc[0]["id"], toc[1]["id"])
+        self.assertIn(f'id="{toc[1]["id"]}"', html)
+
+    def test_no_headings_produce_no_contents(self):
+        html, toc = render_post_body("A short announcement without headings.")
+        self.assertEqual(toc, [])
+        self.assertIn("A short announcement", html)
 
     def test_press_previews_use_small_images_and_keep_downloads(self):
         parser = Links()
