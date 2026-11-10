@@ -5,40 +5,31 @@
   <p>For anything else, reach us at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
 </section>
 
-<!--
-<section class="presskit-section">
-  <div class="presskit-facts">
-    <div class="fact"><span class="eyebrow">Developer</span><strong>{{ studio_name }}</strong></div>
-    <div class="fact"><span class="eyebrow">Platform</span><strong>Steam (Windows)</strong></div>
-    <div class="fact"><span class="eyebrow">Genre</span><strong>Isometric Puzzle Adventure</strong></div>
-    <div class="fact"><span class="eyebrow">Status</span><strong>Demo available now</strong></div>
-  </div>
-</section>-->
-
-<section class="presskit-section" id="key-art">
-  <h2>Key Art</h2>
-  <p>Seven pieces of key art. Each is available as vector SVG, raster PNG at 1x / 2x, or the original Adobe Illustrator source.</p>
+{% for section in presskit_sections %}
+<section class="presskit-section" id="{{ section.id }}">
+  <h2>{{ section.title }}</h2>
+  <p>Choose an image below and download it in any of the available formats.</p>
   <div class="keyart-list">
-    {% for art in keyart %}
-    <div class="keyart-row">
-      <div class="keyart-image">
-        <img src="{{ url(art.png2x) }}" alt="{{ art.caption }}" loading="lazy" width="900" height="900">
-      </div>
+    {% for art in section['items'] %}
+    <article class="keyart-card">
+      <a class="keyart-image" href="{{ url(art.preview) }}" aria-label="View {{ art.title }}">
+        <img src="{{ url(art.preview) }}" alt="{{ art.caption }}" loading="lazy">
+      </a>
       <div class="keyart-downloads">
-        <span class="idx">Key Art / {{ '%02d'|format(art.index) }}</span>
-        <h4>Piece {{ art.index }}</h4>
+        <h3>{{ art.title }}</h3>
         <div class="dl-buttons">
-          <a href="{{ url(art.svg) }}" download>SVG</a>
-          <a href="{{ url(art.png1x) }}" download>PNG 1x</a>
-          <a href="{{ url(art.png2x) }}" download>PNG 2x</a>
-          <a href="{{ url(art.ai) }}" download>Illustrator (.ai)</a>
+          {% for download in art.downloads %}
+          <a href="{{ url(download.path) }}" download aria-label="Download {{ art.title }}: {{ download.label }}">{{ download.label }}</a>
+          {% endfor %}
         </div>
       </div>
-    </div>
+    </article>
     {% endfor %}
   </div>
 </section>
+{% endfor %}
 
+{% if screenshots %}
 <section class="presskit-section" id="screenshots">
   <h2>Screenshots</h2>
   <p>Right-click / long-press any image to save, or use the download link.</p>
@@ -50,4 +41,5 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 {% endblock %}

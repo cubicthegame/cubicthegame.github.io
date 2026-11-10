@@ -35,6 +35,7 @@ import re
 from pathlib import Path
 from datetime import datetime, date
 import json
+from urllib.parse import quote
 
 import yaml
 import markdown
@@ -47,7 +48,9 @@ ASSETS = ROOT / "assets"
 DIST = ROOT / "dist"
 
 SCREENSHOTS_DIR = ASSETS / "images" / "screenshots"
-KEYART_DIR = ASSETS / "images" / "keyart"
+PRESSKIT_DIR = ASSETS / "presskit"
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".svg"}
+DOWNLOAD_EXTENSIONS = IMAGE_EXTENSIONS | {".ai", ".pdf", ".eps", ".psd", ".zip"}
 
 
 def load_config():
@@ -148,21 +151,56 @@ def list_screenshots(cfg):
     return out
 
 
-def list_keyart():
-    items = []
-    for i in range(1, 8):
-        base = f"keyart-{i}"
-        if not (KEYART_DIR / f"{base}.svg").exists():
+def list_presskit(directory=PRESSKIT_DIR):
+    """Discover category/item folders; each item needs at least one preview image."""
+    sections = []
+    for category in sorted(directory.iterdir()):
+        if not category.is_dir() or category.name.startswith("."):
             continue
-        items.append({
-            "index": i,
-            "svg": f"/assets/images/keyart/{base}.svg",
-            "png1x": f"/assets/images/keyart/{base}-1x.png",
-            "png2x": f"/assets/images/keyart/{base}-2x.png",
-            "ai": f"/assets/images/keyart/{base}.ai.txt",
-            "caption": f"Cubic key art - piece {i}",
-        })
-    return items
+        items = []
+        for folder in sorted(category.iterdir()):
+            if not folder.is_dir() or folder.name.startswith("."):
+                continue
+            files = sorted(
+                (f for f in folder.iterdir() if f.is_file()
+                 and f.suffix.lower() in DOWNLOAD_EXTENSIONS),
+                key=lambda f: f.name.lower(),
+            )
+            if not files:
+                continue
+            images = [f for f in files if f.suffix.lower() in IMAGE_EXTENSIONS]
+            if not images:
+                raise ValueError(f"Press kit item {folder} needs a preview image")
+            # Prefer a small raster preview over large exports or SVG source.
+            preview = min(images, key=lambda f: (f.suffix.lower() == ".svg", f.stat().st_size, f.name))
+            title = folder.name.replace("-", " ").replace("_", " ").capitalize()
+
+            def asset_path(file):
+                return "/assets/presskit/" + quote(file.relative_to(directory).as_posix())
+
+            downloads = []
+            for file in files:
+                label = file.suffix[1:].upper()
+                if label == "AI":
+                    label = "Illustrator (.ai)"
+                scale = re.search(r"(?:-|@)(\d+x)$", file.stem, re.IGNORECASE)
+                if scale:
+                    label += f" {scale.group(1).lower()}"
+                downloads.append({"path": asset_path(file), "label": label})
+            items.append({
+                "title": title,
+                "caption": f"Cubic - {title}",
+                "preview": asset_path(preview),
+                "images": [asset_path(f) for f in images],
+                "downloads": downloads,
+            })
+        if items:
+            sections.append({
+                "id": slugify(category.name),
+                "title": category.name.replace("-", " ").replace("_", " ").title(),
+                "items": items,
+            })
+    return sections
 
 
 def video_game_schema(cfg):
@@ -204,7 +242,7 @@ def main():
     cfg = load_config()
     posts = load_posts()
     screenshots = list_screenshots(cfg)
-    keyart = list_keyart()
+    presskit_sections = list_presskit()
 
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -251,11 +289,9 @@ def main():
     home_images = (
         [(abs_url("/assets/images/logo-color-placeholder.png"), f"{cfg['site_name']} - game logo"),
          (abs_url("/assets/images/trailer-poster.jpg"), f"{cfg['site_name']} - official trailer preview frame"),
-         (abs_url("/assets/webm/Webpage_Overworld_alt.webm"), f"{cfg['site_name']} gameplay - exploring an isometric land"),
-         (abs_url("/assets/webm/Webpage_Puzzle.webm"), f"{cfg['site_name']} gameplay - solving a puzzle"),
-         (abs_url("/assets/bg/blackbar_intro_big.png"), f"{cfg['site_name']} - intro background"),
-         (abs_url("/assets/bg/blackbar_desert_big.png"), f"{cfg['site_name']} - desert background"),
-         (abs_url("/assets/bg/blackbar_crystal_big.png"), f"{cfg['site_name']} - crystal background")]
+         (abs_url("/assets/images/bg/blackbar_intro_big.png"), f"{cfg['site_name']} - intro background"),
+         (abs_url("/assets/images/bg/blackbar_desert_big.png"), f"{cfg['site_name']} - desert background"),
+         (abs_url("/assets/images/bg/blackbar_crystal_big.png"), f"{cfg['site_name']} - crystal background")]
         + [(abs_url(s["path"]), s["caption"]) for s in screenshots]
         + [(abs_url(p["cover"]), p["title"]) for p in posts[:3]]
     )
@@ -270,12 +306,14 @@ def main():
         description=f"Key art, screenshots, and facts about {cfg['site_name']} for press and content creators.",
         og_type="website",
         og_image=cfg["default_og_image"],
-        keyart=keyart,
+        presskit_sections=presskit_sections,
         screenshots=screenshots,
     )
     (DIST / "presskit.html").write_text(html, encoding="utf-8")
     presskit_images = (
-        [(abs_url(a["png2x"]), a["caption"]) for a in keyart]
+        [(abs_url(image), item["caption"])
+         for section in presskit_sections for item in section["items"]
+         for image in item["images"]]
         + [(abs_url(s["path"]), s["caption"]) for s in screenshots]
     )
     pages.append(("/presskit.html", 0.6, "monthly", presskit_images))
