@@ -447,10 +447,11 @@ footer.site-footer{
   .presskit-facts{ grid-template-columns:repeat(2,1fr); }
 }
 @media (max-width:760px){
-  .nav-inner{ grid-template-columns:auto 1fr auto; }
+  .nav-inner{ grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); }
   .nav-left a.nav-link{ display:none; }
   .nav-left{ gap:14px; }
-  .mobile-nav{ display:block; }
+  .nav-left > .brand{ flex-shrink:0; }
+  .mobile-nav{ display:block; flex-shrink:0; }
   .steam-pill .wl-text{ display:none; }
   .steam-pill{ padding:10px; }
   .nav-center img{ height:24px; }
@@ -462,6 +463,11 @@ footer.site-footer{
 }
 @media (max-width:699px){
   .keyart-list{ grid-template-columns:1fr; }
+}
+@media (max-width:360px){
+  .nav-inner{ padding:0 12px; gap:8px; }
+  .nav-left{ gap:6px; }
+  .nav-left .brand img{ height:28px; }
 }
 @media (max-width:520px){
   .frontbar-intro{ padding-top:14vw; }
